@@ -6,14 +6,20 @@
     <AssemblyName>RocketEcommercePayPal</AssemblyName>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\DNNrocket\API\DNNrocketAPI.csproj" />
-    <ProjectReference Include="..\..\..\..\DNNrocket\Simplisity\Simplisity.csproj" />
-    <ProjectReference Include="..\..\RocketEcommerce.csproj" />
-  </ItemGroup>
-
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy &quot;$(ProjectDir)$(OutDir)$(TargetFileName)&quot; &quot;$(ProjectDir)..\..\..\..\..\bin\$(TargetFileName)&quot;&#xD;&#xA;&#xD;&#xA;copy &quot;$(ProjectDir)$(OutDir)$(AssemblyName).pdb&quot; &quot;$(ProjectDir)..\..\..\..\..\bin\$(AssemblyName).pdb&quot;&#xD;&#xA;&#xD;&#xA;" />
+    <Exec Command="copy &quot;$(ProjectDir)$(OutDir)$(TargetFileName)&quot; &quot;$(ProjectDir)..\..\..\bin\$(TargetFileName)&quot;&#xD;&#xA;&#xD;&#xA;copy &quot;$(ProjectDir)$(OutDir)$(AssemblyName).pdb&quot; &quot;$(ProjectDir)..\..\..\bin\$(AssemblyName).pdb&quot;&#xD;&#xA;&#xD;&#xA;" />
   </Target>
+
+  <ItemGroup>
+    <Reference Include="DNNrocketAPI">
+      <HintPath>..\..\..\bin\DNNrocketAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="RocketEcommerce">
+      <HintPath>..\..\..\bin\RocketEcommerce.dll</HintPath>
+    </Reference>
+    <Reference Include="Simplisity">
+      <HintPath>..\..\..\bin\Simplisity.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 
 </Project>

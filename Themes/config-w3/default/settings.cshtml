@@ -5,32 +5,28 @@
 @using System.Xml
 @using Simplisity;
 @using DNNrocketAPI.Componants;
+@using DNNrocketAPI;
 
 @{
     var info = (SimplisityInfo)Model.List.First();
-    var notifyurl = "https://" + DNNrocketUtils.GetCurrentWebsiteDomainUrl() + "/DesktopModules/DNNrocketModules/RocketEcommerce/notify.ashx";
-    var animate = "w3-animate-bottom";
-    if (Model.GetSettingBool("stopanimate"))
-    {
-        animate = "";
-    }
+    var notifyurl = "https://" + PortalUtils.GetPortalAlias(DNNrocketUtils.GetCurrentCulture(), PortalUtils.GetPortalId()) + "/DesktopModules/DNNrocketModules/RocketEcommerce/notify.ashx";
 }
 
 
-@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/api/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocket/API/App_LocalResources/")
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketEcommerce/App_LocalResources/")
-@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketEcommerce/Providers/paypal/App_LocalResources/")
+@AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketEcommercePayPal/App_LocalResources/")
 
 
-    <div class="w3-row w3-padding">
-        <div class="w3-col m2 w3-button w3-green simplisity_click " s-cmd="paypal_save" s-post="#datasave" s-fields='{"stopanimate":"true"}'>@ResourceKey("DNNrocket.cmdSaveButton")</div>
-        @if (Model.GetSettingBool("saved"))
-        {
-            <i class='fas fa-save w3-right simplisity_fadeout' style="font-size:24px"></i>
-        }
-    </div>
+<div class="w3-row w3-padding">
+    <div class="w3-col m2 w3-button w3-green simplisity_click " s-cmd="paypal_save" s-post="#datasave" s-fields=''>@ButtonText(ButtonTypes.save)</div>
+    @if (Model.GetSettingBool("saved"))
+    {
+        <i class='fas fa-save w3-right simplisity_fadeout' style="font-size:24px"></i>
+    }
+</div>
 
-<div id="datasave" class="@animate w3-margin-top">
+<div id="datasave" class="w3-margin-top">
 
     <div class="w3-container w3-theme">
         <h2>@ResourceKey("provider.paypalsettings")</h2>
@@ -38,35 +34,35 @@
 
     <div class="w3-container">
         <label>Assembly</label>
-        @TextBox(info, "genxml/textbox/assembly", "class='w3-input'  autocomplete='off' disabled ", "RocketEcommercePayPal")
+        @TextBox(info, "genxml/textbox/assembly", "class='w3-input w3-border'  autocomplete='off' disabled ", "RocketEcommercePayPal")
         <label>Namespace + Class</label>
-        @TextBox(info, "genxml/textbox/namespaceclass", "class='w3-input'  autocomplete='off' disabled ", "RocketEcommerce.PayPal.BankInterface")
+        @TextBox(info, "genxml/textbox/namespaceclass", "class='w3-input w3-border'  autocomplete='off' disabled ", "RocketEcommerce.PayPal.BankInterface")
         <label>@ResourceKey("provider.notifyurl")</label>
-        @TextBox(info, "genxml/textbox/notifyurl", "class='w3-input'  autocomplete='off'  ", notifyurl)
+        @TextBox(info, "genxml/textbox/notifyurl", "class='w3-input w3-border'  autocomplete='off'  ", notifyurl)
     </div>
 
     <div class="w3-container">
 
         <label>@ResourceKey("provider.returnurl")</label>
-        @TextBox(info, "genxml/textbox/returnurl", "class='w3-input'  autocomplete='off'  ")
+        @TextBox(info, "genxml/textbox/returnurl", "class='w3-input w3-border'  autocomplete='off'  ")
 
         <label>@ResourceKey("provider.testposturl")</label>
-        @TextBox(info, "genxml/textbox/testposturl", "class='w3-input'  autocomplete='off'  ", "https://www.sandbox.paypal.com/cgi-bin/webscr")
+        @TextBox(info, "genxml/textbox/testposturl", "class='w3-input w3-border'  autocomplete='off'  ", "https://www.sandbox.paypal.com/cgi-bin/webscr")
 
         <label>@ResourceKey("provider.liveposturl")</label>
-        @TextBox(info, "genxml/textbox/liveposturl", "class='w3-input'  autocomplete='off'  ", "https://www.paypal.com/cgi-bin/webscr")
+        @TextBox(info, "genxml/textbox/liveposturl", "class='w3-input w3-border'  autocomplete='off'  ", "https://www.paypal.com/cgi-bin/webscr")
 
         <label>@ResourceKey("provider.paypalid")</label>
-        @TextBox(info, "genxml/textbox/paypalid", "class='w3-input'  autocomplete='off'  ")
+        @TextBox(info, "genxml/textbox/paypalid", "class='w3-input w3-border'  autocomplete='off'  ")
 
         <label>@ResourceKey("provider.charset")</label>
-        @TextBox(info, "genxml/textbox/charset", "class='form-control w3-input'  autocomplete='off'", "utf-8")
+        @TextBox(info, "genxml/textbox/charset", "class='form-control w3-input w3-border'  autocomplete='off'", "utf-8")
 
         <label>@ResourceKey("provider.currencycode")</label>
-        @TextBox(info, "genxml/textbox/currencycode", "class='form-control w3-input'  autocomplete='off'", "EUR")
+        @TextBox(info, "genxml/textbox/currencycode", "class='form-control w3-input w3-border'  autocomplete='off'", "EUR")
 
         <label>@ResourceKey("provider.extrafields")</label>
-        @TextArea(info, "genxml/textbox/extrafields", "class='form-control w3-input'  autocomplete='off' rows='4'", "")
+        @TextArea(info, "genxml/textbox/extrafields", "class='form-control w3-input w3-border'  autocomplete='off' rows='4'", "")
 
         <hr />
 

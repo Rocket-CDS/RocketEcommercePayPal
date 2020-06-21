@@ -67,15 +67,14 @@ namespace RocketEcommerce.PayPal
         public static String EditData()
         {
             var objCtrl = new DNNrocketController();
-            var razorTempl = DNNrocketUtils.GetRazorTemplateData(_rocketInterface.DefaultTemplate, _rocketInterface.TemplateRelPath, _rocketInterface.DefaultTheme , _currentLang, _rocketInterface.ThemeVersion, _systemInfoData.DebugMode);
+            var razorTempl = DNNrocketUtils.GetRazorTemplateData(_rocketInterface.DefaultTemplate, _rocketInterface.TemplateRelPath, _rocketInterface.DefaultTheme , _currentLang, _rocketInterface.ThemeVersion, true);
             var guidKey = PortalUtils.GetPortalId() + "." +  _systemInfoData.SystemKey + "." + _rocketInterface.DefaultTemplate;
             var info = objCtrl.GetData(guidKey, _rocketInterface.EntityTypeCode, _currentLang, -1,  false, _rocketInterface.DatabaseTable);
-            var strOut = DNNrocketUtils.RazorDetail(razorTempl, info, _passSettings, new SessionParams(_paramInfo), _systemInfoData.DebugMode);
+            var strOut = DNNrocketUtils.RazorDetail(razorTempl, info, _passSettings, new SessionParams(_paramInfo), true);
             return strOut;
         }
         public static void SaveData()
         {
-            _passSettings.Add("saved", "true");
             var objCtrl = new DNNrocketController();
             var guidKey = PortalUtils.GetPortalId() + "." + _systemInfoData.SystemKey + "." + _rocketInterface.DefaultTemplate;
             var info = objCtrl.GetData(guidKey, _rocketInterface.EntityTypeCode, _currentLang, -1, false, _rocketInterface.DatabaseTable);
