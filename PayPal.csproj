@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>RocketEcommerce.PayPal</RootNamespace>
+    <AssemblyName>RocketEcommercePayPal</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\DNNrocket\API\DNNrocketAPI.csproj" />
+    <ProjectReference Include="..\..\..\..\DNNrocket\Simplisity\Simplisity.csproj" />
+    <ProjectReference Include="..\..\RocketEcommerce.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy &quot;$(ProjectDir)$(OutDir)$(TargetFileName)&quot; &quot;$(ProjectDir)..\..\..\..\..\bin\$(TargetFileName)&quot;&#xD;&#xA;&#xD;&#xA;copy &quot;$(ProjectDir)$(OutDir)$(AssemblyName).pdb&quot; &quot;$(ProjectDir)..\..\..\..\..\bin\$(AssemblyName).pdb&quot;&#xD;&#xA;&#xD;&#xA;" />
+  </Target>
+
+</Project>
