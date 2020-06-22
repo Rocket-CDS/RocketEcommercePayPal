@@ -9,7 +9,7 @@
 
 @{
     var info = (SimplisityInfo)Model.List.First();
-    var notifyurl = "https://" + PortalUtils.GetPortalAlias(DNNrocketUtils.GetCurrentCulture(), PortalUtils.GetPortalId()) + "/DesktopModules/DNNrocketModules/RocketEcommerce/notify.ashx";
+    var notifyurl = "https://" + PortalUtils.GetPortalAlias(DNNrocketUtils.GetCurrentCulture(), PortalUtils.GetPortalId()) + "/DesktopModules/DNNrocketModules/RocketEcommercePayPal/notify.ashx";
 }
 
 
@@ -28,8 +28,8 @@
 
 <div id="datasave" class="w3-margin-top">
 
-    <div class="w3-container w3-theme">
-        <h2>@ResourceKey("provider.paypalsettings")</h2>
+    <div class="w3-container ">
+        <h2><i class="fab fa-paypal fa-x3"></i>&nbsp;@ResourceKey("provider.paypalsettings")</h2>
     </div>
 
     <div class="w3-container">
