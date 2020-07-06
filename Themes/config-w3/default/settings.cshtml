@@ -18,13 +18,14 @@
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketEcommercePayPal/App_LocalResources/")
 
 
-<div class="w3-row w3-padding">
-    <div class="w3-col m2 w3-button w3-green simplisity_click " s-cmd="paypal_save" s-post="#datasave" s-fields=''>@ButtonText(ButtonTypes.save)</div>
-    @if (Model.GetSettingBool("saved"))
-    {
-        <i class='fas fa-save w3-right simplisity_fadeout' style="font-size:24px"></i>
-    }
-</div>
+    <div class="w3-row w3-padding">
+        <div class="w3-col m2 rocket-buttonbar w3-button w3-khaki " onclick="window.location.reload(false);">@ButtonText(ButtonTypes.back)</div>
+        <div class="w3-col m2 rocket-buttonbar w3-button w3-green simplisity_click " s-cmd="paypal_save" s-post="#datasave" s-fields=''>@ButtonText(ButtonTypes.save)</div>
+        @if (Model.GetSettingBool("saved"))
+        {
+            <i class='fas fa-save w3-right simplisity_fadeout' style="font-size:24px"></i>
+        }
+    </div>
 
 <div id="datasave" class="w3-margin-top">
 

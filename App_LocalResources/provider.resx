@@ -144,8 +144,11 @@
   <data name="notifyurl.Text" xml:space="preserve">
     <value>Notify URL (IPN)</value>
   </data>
-  <data name="paypal.Text" xml:space="preserve">
+  <data name="paynow.Text" xml:space="preserve">
     <value>Pay Now with Pay Pal</value>
+  </data>
+  <data name="paypal.Text" xml:space="preserve">
+    <value>Pay Pal</value>
   </data>
   <data name="paypalid.Text" xml:space="preserve">
     <value>PayPal ID</value>
