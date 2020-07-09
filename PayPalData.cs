@@ -9,17 +9,34 @@ namespace RocketEcommerce.PayPal
 {
     public class PayPalData
     {
+        private const string _entityTypeCode = "PAYPAL";
         private const string _tableName = "RocketEcommerce";
+        private string _guidKey;
+        private DNNrocketController _objCtrl;
+        public PayPalData(string siteGuid, string systemKey)
+        {
+            _guidKey = siteGuid + "_" + systemKey;
+            _objCtrl = new DNNrocketController();
+            Info = _objCtrl.GetData(_guidKey, _entityTypeCode, DNNrocketUtils.GetCurrentCulture(), -1, true, _tableName);
+            if (Info == null)
+            {
+                var portalId = PortalUtils.GetPortalIdBySiteKey(siteGuid);
+                Info = new SimplisityInfo();
+                Info.TypeCode = _entityTypeCode;
+                Info.GUIDKey = _guidKey;
+                Info.PortalId = portalId;
+            }
+        }
+        public void Save(SimplisityInfo postInfo)
+        {
+            Info.XMLData = postInfo.XMLData;
+            _objCtrl.SaveData(Info, _tableName);
+        }
+        public void Delete()
+        {
+            if (Info.ItemID > 0) _objCtrl.Delete(Info.ItemID);
+        }
 
-        public PayPalData(string guidKey)
-        {
-            var objCtrl = new DNNrocketController();
-            Info = objCtrl.GetData(guidKey, "PAYPAL", DNNrocketUtils.GetCurrentCulture(), -1, false, _tableName);
-        }
-        public PayPalData(SimplisityInfo simplisityInfo)
-        {
-            Info = simplisityInfo;
-        }
         public SimplisityInfo Info { get; set; }
         public string NotifyUrl
         {

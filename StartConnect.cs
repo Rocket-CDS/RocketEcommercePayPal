@@ -8,14 +8,13 @@ namespace RocketEcommerce.PayPal
 {
     public class StartConnect : DNNrocketAPI.APInterface
     {
-        private static SimplisityInfo _postInfo;
-        private static SimplisityInfo _paramInfo;
-        private static CommandSecurity _commandSecurity;
-        private static DNNrocketInterface _rocketInterface;
-        private static string _tableName;
-        private static string _currentLang;
-        private static SystemData _systemInfoData;
-        private static Dictionary<string, string> _passSettings;
+        private SimplisityInfo _postInfo;
+        private SimplisityInfo _paramInfo;
+        private CommandSecurity _commandSecurity;
+        private DNNrocketInterface _rocketInterface;
+        private string _currentLang;
+        private Dictionary<string, string> _passSettings;
+        private SystemData _systemData;
 
         public override Dictionary<string, object> ProcessCommand(string paramCmd, SimplisityInfo systemInfo, SimplisityInfo interfaceInfo, SimplisityInfo postInfo, SimplisityInfo paramInfo, string langRequired = "")
         {
@@ -24,8 +23,8 @@ namespace RocketEcommerce.PayPal
 
             paramCmd = paramCmd.ToLower();
 
+            _systemData = new SystemData(systemInfo);
             _rocketInterface = new DNNrocketInterface(interfaceInfo);
-            _systemInfoData = new SystemData(systemInfo);
 
             _postInfo = postInfo;
             _paramInfo = paramInfo;
@@ -64,29 +63,23 @@ namespace RocketEcommerce.PayPal
             return rtnDic;
         }
 
-        public static String EditData()
+        public String EditData()
         {
-            var objCtrl = new DNNrocketController();
+            var paypalData = new PayPalData(PortalUtils.SiteGuid(), _systemData.SystemKey);
+
             var razorTempl = DNNrocketUtils.GetRazorTemplateData(_rocketInterface.DefaultTemplate, _rocketInterface.TemplateRelPath, _rocketInterface.DefaultTheme , _currentLang, _rocketInterface.ThemeVersion, true);
-            var guidKey = PortalUtils.GetPortalId() + "." +  _systemInfoData.SystemKey + "." + _rocketInterface.DefaultTemplate;
-            var info = objCtrl.GetData(guidKey, _rocketInterface.EntityTypeCode, _currentLang, -1,  false, _rocketInterface.DatabaseTable);
-            var strOut = DNNrocketUtils.RazorDetail(razorTempl, info, _passSettings, new SessionParams(_paramInfo), true);
+            var strOut = DNNrocketUtils.RazorDetail(razorTempl, paypalData.Info, _passSettings, new SessionParams(_paramInfo), true);
             return strOut;
         }
-        public static void SaveData()
+        public void SaveData()
         {
-            var objCtrl = new DNNrocketController();
-            var guidKey = PortalUtils.GetPortalId() + "." + _systemInfoData.SystemKey + "." + _rocketInterface.DefaultTemplate;
-            var info = objCtrl.GetData(guidKey, _rocketInterface.EntityTypeCode, _currentLang, -1, false, _rocketInterface.DatabaseTable);
-            info.XMLData = _postInfo.XMLData;
-            objCtrl.SaveData(info, _rocketInterface.DatabaseTable);
+            var paypalData = new PayPalData(PortalUtils.SiteGuid(), _systemData.SystemKey);
+            paypalData.Save(_postInfo);
         }
-        public static void DeleteData()
+        public void DeleteData()
         {
-            var objCtrl = new DNNrocketController();
-            var guidKey = PortalUtils.GetPortalId() + "." + _systemInfoData.SystemKey + "." + _rocketInterface.DefaultTemplate;
-            var info = objCtrl.GetData(guidKey, _rocketInterface.EntityTypeCode, _currentLang, -1, false, _rocketInterface.DatabaseTable);
-            objCtrl.Delete(info.ItemID);
+            var paypalData = new PayPalData(PortalUtils.SiteGuid(), _systemData.SystemKey);
+            paypalData.Delete();
         }
 
     }

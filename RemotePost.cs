@@ -22,7 +22,7 @@ namespace RocketEcommerce.PayPal
         {
             string sipsHtml = "";
 
-            sipsHtml = "<html><head>";
+            sipsHtml += "<html><head>";
             sipsHtml += "<link rel='stylesheet' href='/DesktopModules/DNNrocket/css/w3.css'>";
             sipsHtml += "<link rel='stylesheet' href='/DesktopModules/DNNrocket/fa/css/all.min.css'>";
             sipsHtml += "</head><body onload=\"document." + FormName + ".submit()\">";

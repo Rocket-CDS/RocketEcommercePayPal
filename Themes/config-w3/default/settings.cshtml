@@ -9,7 +9,7 @@
 
 @{
     var info = (SimplisityInfo)Model.List.First();
-    var notifyurl = "https://" + PortalUtils.GetPortalAlias(DNNrocketUtils.GetCurrentCulture(), PortalUtils.GetPortalId()) + "/DesktopModules/DNNrocketModules/RocketEcommercePayPal/notify.ashx";
+    var notifyurl = PortalUtils.GetPortalAlias(DNNrocketUtils.GetCurrentCulture(), PortalUtils.GetPortalId()) + "/DesktopModules/DNNrocketModules/RocketEcommercePayPal/notify.ashx";
 }
 
 

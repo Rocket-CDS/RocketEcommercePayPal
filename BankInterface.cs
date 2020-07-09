@@ -19,13 +19,8 @@ namespace RocketEcommerce.PayPal
             if (rocketInterface != null)
             {
                 var rPost = new RemotePost();
-
-                var objCtrl = new DNNrocketController();
-                var guidKey = systemInfoData.SystemKey + "." + rocketInterface.DefaultTemplate;
-                var paypalData = new PayPalData(guidKey);
-
+                var paypalData = new PayPalData(PortalUtils.SiteGuid(), systemInfoData.SystemKey);
                 var appliedtotal = paymentData.Amount.ToString("0.00").Replace(",", "");
-
                 var postUrl = paypalData.LivePostUrl;
                 if (paypalData.PreProduction) postUrl = paypalData.TestPostUrl;
 
@@ -90,8 +85,7 @@ namespace RocketEcommerce.PayPal
                 var ipn = new PayPalIpnParameters(postInfo);
                 if (paymentData.Status == PaymentStatus.WaitingForBank) // Only process if we are waiting for bank.
                 {
-                    var guidKey = systemInfoData.SystemKey + "." + rocketInterface.DefaultTemplate;
-                    var paypalData = new PayPalData(guidKey);
+                    var paypalData = new PayPalData(PortalUtils.SiteGuid(), systemInfoData.SystemKey);
                     var postUrl = paypalData.LivePostUrl;
                     if (paypalData.PreProduction) postUrl = paypalData.TestPostUrl;
                     var validateUrl = postUrl + "?" + ipn.PostString;

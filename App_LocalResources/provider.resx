@@ -130,7 +130,7 @@
     <value>Debug Mode</value>
   </data>
   <data name="extrafields.Text" xml:space="preserve">
-    <value>Extra Fields (xpath CSV)</value>
+    <value>Extra Fields (xpath=value, CSV)</value>
   </data>
   <data name="hmackey.Text" xml:space="preserve">
     <value>HMAC Key</value>
@@ -151,7 +151,7 @@
     <value>Pay Pal</value>
   </data>
   <data name="paypalid.Text" xml:space="preserve">
-    <value>PayPal ID</value>
+    <value>PayPal ID (Account Name)</value>
   </data>
   <data name="paypalsettings.Text" xml:space="preserve">
     <value>PayPal Settings</value>
