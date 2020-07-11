@@ -19,7 +19,7 @@ namespace RocketEcommerce.PayPal
             if (rocketInterface != null)
             {
                 var rPost = new RemotePost();
-                var paypalData = new PayPalData(PortalUtils.SiteGuid(), systemInfoData.SystemKey);
+                var paypalData = new PayPalData(PortalUtils.SiteGuid());
                 var appliedtotal = paymentData.Amount.ToString("0.00").Replace(",", "");
                 var postUrl = paypalData.LivePostUrl;
                 if (paypalData.PreProduction) postUrl = paypalData.TestPostUrl;
@@ -30,10 +30,10 @@ namespace RocketEcommerce.PayPal
 
                 rPost.Add("cmd", "_xclick");
                 rPost.Add("item_number", paymentData.PaymentId.ToString(""));
-                rPost.Add("return", paypalData.ReturnUrl + "?status=1&code=" + paymentData.PaymentGuid);
+                rPost.Add("return", paypalData.ReturnUrl + "?status=1&key=" + paymentData.PaymentGuid);
                 rPost.Add("currency_code", paypalData.CurrencyCode);
-                rPost.Add("cancel_return", paypalData.ReturnUrl + "?status=0&code=" + paymentData.PaymentGuid);
-                rPost.Add("notify_url", paypalData.NotifyUrl + "?systemprovider=RocketEcommerce&cmd=RocketEcommerce_notify&code=" + paymentData.PaymentGuid);
+                rPost.Add("cancel_return", paypalData.ReturnUrl + "?status=0&key=" + paymentData.PaymentGuid);
+                rPost.Add("notify_url", paypalData.NotifyUrl + "?systemprovider=rocketecommerce&cmd=rocketecommerce_notify&key=" + paymentData.PaymentGuid);
                 rPost.Add("custom", DNNrocketUtils.GetCurrentCulture());
                 rPost.Add("business", paypalData.PayPalId);
                 rPost.Add("item_name", paymentData.PaymentId.ToString(""));
@@ -51,8 +51,7 @@ namespace RocketEcommerce.PayPal
                     {
                         var n = ary[0];
                         var v = ary[1];
-                        var d = paymentData.Info.GetXmlProperty(v);
-                        rPost.Add(n, d);
+                        rPost.Add(n, v);
                     }
                 }
 
@@ -73,19 +72,17 @@ namespace RocketEcommerce.PayPal
             var ipn = new PayPalIpnParameters(postInfo);
             return ipn.item_number;
         }
-        public override string NotifyEvent(SimplisityInfo postInfo, SimplisityInfo paramInfo, SystemData systemInfoData)
+        public override PaymentData NotifyEvent(PaymentData paymentData, SimplisityInfo postInfo, SimplisityInfo paramInfo, SystemData systemInfoData)
         {
             var rtnMsg = "";
-            var paymentData = new PaymentData(PortalUtils.GetPortalId(), paramInfo.GetXmlPropertyInt("genxml/hidden/paymentid"), DNNrocketUtils.GetCurrentCulture());
-            var rocketInterface = systemInfoData.GetInterface(paymentData.PaymentProvider);
+            var rocketInterface = systemInfoData.GetInterface("paypal");
             if (rocketInterface != null)
             {
-                rtnMsg = "version=2" + Environment.NewLine + "cdr=1";
-
                 var ipn = new PayPalIpnParameters(postInfo);
                 if (paymentData.Status == PaymentStatus.WaitingForBank) // Only process if we are waiting for bank.
                 {
-                    var paypalData = new PayPalData(PortalUtils.SiteGuid(), systemInfoData.SystemKey);
+                    paymentData.BankMessage = "version=2" + Environment.NewLine + "cdr=1";
+                    var paypalData = new PayPalData(PortalUtils.SiteGuid());
                     var postUrl = paypalData.LivePostUrl;
                     if (paypalData.PreProduction) postUrl = paypalData.TestPostUrl;
                     var validateUrl = postUrl + "?" + ipn.PostString;
@@ -106,31 +103,23 @@ namespace RocketEcommerce.PayPal
                         }
                     }
                     paymentData.Update();
-                }
+                }                       
             }
 
-            return rtnMsg;
+            return paymentData;
         }
-        public override int ReturnEvent(SimplisityInfo postInfo, SimplisityInfo paramInfo, SystemData systemInfoData)
+        public override PaymentData ReturnEvent(PaymentData paymentData, SimplisityInfo postInfo, SimplisityInfo paramInfo, SystemData systemInfoData)
         {
-            var paymentData = new PaymentData(PortalUtils.GetPortalId(), paramInfo.GetXmlPropertyInt("genxml/hidden/paymentid"), DNNrocketUtils.GetCurrentCulture());
-            var rocketInterface = systemInfoData.GetInterface(paymentData.PaymentProvider);
-            if (rocketInterface != null)
-            {
-                if (paymentData.Status == PaymentStatus.WaitingForBank) // Only process if we are waiting for bank.
-                {
-                    if (paramInfo.GetXmlProperty("genxml/hidden/status") == "1")
-                    {
-                        return Convert.ToInt32(PaymentStatus.PaymentOK);
-                    }
-                    if (paramInfo.GetXmlProperty("genxml/hidden/status") == "0")
-                    {
-                        return Convert.ToInt32(PaymentStatus.PaymentFailed);
-                    }
-                }
-            }
 
-            return -1;
+            if (paymentData.Status == PaymentStatus.WaitingForBank)
+            {
+                if (paramInfo.GetXmlPropertyInt("genxml/urlparams/status") == 0)
+                    paymentData.Status = PaymentStatus.PaymentFailed;
+                else
+                    paymentData.Status = PaymentStatus.PaymentNotVerified;
+                paymentData.Update();
+            }
+            return paymentData;
         }
     }
 }

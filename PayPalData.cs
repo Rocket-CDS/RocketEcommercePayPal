@@ -1,5 +1,6 @@
 ﻿using DNNrocketAPI;
 using DNNrocketAPI.Componants;
+using RocketEcommerce.Componants;
 using Simplisity;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,15 @@ namespace RocketEcommerce.PayPal
     {
         private const string _entityTypeCode = "PAYPAL";
         private const string _tableName = "RocketEcommerce";
+        private const string _systemKey = "rocketecommerce";
         private string _guidKey;
         private DNNrocketController _objCtrl;
-        public PayPalData(string siteGuid, string systemKey)
+        private PortalShop _portalShop;
+        public PayPalData(string siteGuid)
         {
-            _guidKey = siteGuid + "_" + systemKey;
+            var portalid = PortalUtils.GetPortalIdBySiteKey(siteGuid);
+            _portalShop = new PortalShop(portalid, DNNrocketUtils.GetCurrentCulture());
+            _guidKey = siteGuid + "_" + _systemKey;
             _objCtrl = new DNNrocketController();
             Info = _objCtrl.GetData(_guidKey, _entityTypeCode, DNNrocketUtils.GetCurrentCulture(), -1, true, _tableName);
             if (Info == null)
@@ -40,8 +45,7 @@ namespace RocketEcommerce.PayPal
         public SimplisityInfo Info { get; set; }
         public string NotifyUrl
         {
-            get { return Info.GetXmlProperty("genxml/textbox/notifyurl"); }
-            set { Info.SetXmlProperty("genxml/textbox/notifyurl", value); }
+            get { return _portalShop.EngineUrl.TrimEnd('/') + "/Desktopmodules/dnnrocket/api/rocket/action"; }
         }
         public string ReturnUrl
         {

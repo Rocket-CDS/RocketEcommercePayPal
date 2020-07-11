@@ -9,7 +9,7 @@
 
 @{
     var info = (SimplisityInfo)Model.List.First();
-    var notifyurl = PortalUtils.GetPortalAlias(DNNrocketUtils.GetCurrentCulture(), PortalUtils.GetPortalId()) + "/DesktopModules/DNNrocketModules/RocketEcommercePayPal/notify.ashx";
+    var engineurl = PortalUtils.GetPortalAlias(DNNrocketUtils.GetCurrentCulture(), PortalUtils.GetPortalId());
 }
 
 
@@ -38,32 +38,82 @@
         @TextBox(info, "genxml/textbox/assembly", "class='w3-input w3-border'  autocomplete='off' disabled ", "RocketEcommercePayPal")
         <label>Namespace + Class</label>
         @TextBox(info, "genxml/textbox/namespaceclass", "class='w3-input w3-border'  autocomplete='off' disabled ", "RocketEcommerce.PayPal.BankInterface")
-        <label>@ResourceKey("provider.notifyurl")</label>
-        @TextBox(info, "genxml/textbox/notifyurl", "class='w3-input w3-border'  autocomplete='off'  ", notifyurl)
     </div>
 
     <div class="w3-container">
 
-        <label>@ResourceKey("provider.returnurl")</label>
-        @TextBox(info, "genxml/textbox/returnurl", "class='w3-input w3-border'  autocomplete='off'  ")
+        <div class="w3-row">
+            <div class="w3-twothird">
+                <label>@ResourceKey("provider.returnurl")</label>
+                @TextBox(info, "genxml/textbox/returnurl", "class='w3-input w3-border'  autocomplete='off'  ")
+            </div>
+            <div class="w3-third w3-padding">
+                @ResourceKey("provider.returnurl", "", "Help")
+            </div>
+        </div>
 
-        <label>@ResourceKey("provider.testposturl")</label>
-        @TextBox(info, "genxml/textbox/testposturl", "class='w3-input w3-border'  autocomplete='off'  ", "https://www.sandbox.paypal.com/cgi-bin/webscr")
+        <div class="w3-row">
+            <div class="w3-twothird">
+                <label>@ResourceKey("provider.paypalid")</label>
+                @TextBox(info, "genxml/textbox/paypalid", "class='w3-input w3-border'  autocomplete='off'  ")
+            </div>
+            <div class="w3-third w3-padding">
+                @ResourceKey("provider.", "", "Help")
+            </div>
+        </div>
 
-        <label>@ResourceKey("provider.liveposturl")</label>
-        @TextBox(info, "genxml/textbox/liveposturl", "class='w3-input w3-border'  autocomplete='off'  ", "https://www.paypal.com/cgi-bin/webscr")
+        <div class="w3-row">
+            <div class="w3-twothird">
+                <label>@ResourceKey("provider.testposturl")</label>
+                @TextBox(info, "genxml/textbox/testposturl", "class='w3-input w3-border'  autocomplete='off'  ", "https://www.sandbox.paypal.com/cgi-bin/webscr")
+            </div>
+            <div class="w3-third w3-padding">
+                @ResourceKey("provider.testposturl", "", "Help")
+            </div>
+        </div>
 
-        <label>@ResourceKey("provider.paypalid")</label>
-        @TextBox(info, "genxml/textbox/paypalid", "class='w3-input w3-border'  autocomplete='off'  ")
+        <div class="w3-row">
+            <div class="w3-twothird">
+                <label>@ResourceKey("provider.liveposturl")</label>
+                @TextBox(info, "genxml/textbox/liveposturl", "class='w3-input w3-border'  autocomplete='off'  ", "https://www.paypal.com/cgi-bin/webscr")
+            </div>
+            <div class="w3-third w3-padding">
+                @ResourceKey("provider.", "", "Help")
+            </div>
+        </div>
 
-        <label>@ResourceKey("provider.charset")</label>
-        @TextBox(info, "genxml/textbox/charset", "class='form-control w3-input w3-border'  autocomplete='off'", "utf-8")
+        <div class="w3-row">
+            <div class="w3-twothird">
+                <label>@ResourceKey("provider.charset")</label>
+                @TextBox(info, "genxml/textbox/charset", "class='form-control w3-input w3-border'  autocomplete='off'", "utf-8")
+            </div>
+            <div class="w3-third w3-padding">
+                @ResourceKey("provider.", "", "Help")
+            </div>
 
-        <label>@ResourceKey("provider.currencycode")</label>
-        @TextBox(info, "genxml/textbox/currencycode", "class='form-control w3-input w3-border'  autocomplete='off'", "EUR")
+        </div>
 
-        <label>@ResourceKey("provider.extrafields")</label>
-        @TextArea(info, "genxml/textbox/extrafields", "class='form-control w3-input w3-border'  autocomplete='off' rows='4'", "")
+        <div class="w3-row">
+            <div class="w3-twothird">
+                <label>@ResourceKey("provider.currencycode")</label>
+                @TextBox(info, "genxml/textbox/currencycode", "class='form-control w3-input w3-border'  autocomplete='off'", "EUR")
+            </div>
+            <div class="w3-third w3-padding">
+                @ResourceKey("provider.", "", "Help")
+            </div>
+
+        </div>
+
+        <div class="w3-row">
+            <div class="w3-twothird">
+                <label>@ResourceKey("provider.extrafields")</label>
+                @TextArea(info, "genxml/textbox/extrafields", "class='form-control w3-input w3-border'  autocomplete='off' rows='4'", "")
+            </div>
+            <div class="w3-third w3-padding">
+                @ResourceKey("provider.extrafields", "", "Help")
+            </div>
+
+        </div>
 
         <hr />
 

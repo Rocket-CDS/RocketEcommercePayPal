@@ -129,8 +129,11 @@
   <data name="debugmode.Text" xml:space="preserve">
     <value>Debug Mode</value>
   </data>
+  <data name="extrafields.Help" xml:space="preserve">
+    <value>Extra data can be past to PayPal, via this field.  Use a CSV (key=value,) format.  The key is the name of the PayPal field.  This data is then included in the remote post, called by BankInterface.cs.</value>
+  </data>
   <data name="extrafields.Text" xml:space="preserve">
-    <value>Extra Fields (xpath=value, CSV)</value>
+    <value>Extra Fields</value>
   </data>
   <data name="hmackey.Text" xml:space="preserve">
     <value>HMAC Key</value>
@@ -158,6 +161,9 @@
   </data>
   <data name="preproduction.Text" xml:space="preserve">
     <value>Pre-Production</value>
+  </data>
+  <data name="returnurl.Help" xml:space="preserve">
+    <value>This is the URL that the client will be returned to after payment. </value>
   </data>
   <data name="returnurl.Text" xml:space="preserve">
     <value>Return URL</value>
