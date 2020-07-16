@@ -74,7 +74,6 @@ namespace RocketEcommerce.PayPal
         }
         public override PaymentLimpet NotifyEvent(PaymentLimpet paymentData, SimplisityInfo postInfo, SimplisityInfo paramInfo, SystemData systemInfoData)
         {
-            var rtnMsg = "";
             var rocketInterface = systemInfoData.GetInterface("paypal");
             if (rocketInterface != null)
             {
