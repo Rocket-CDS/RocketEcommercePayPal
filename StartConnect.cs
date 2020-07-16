@@ -11,7 +11,7 @@ namespace RocketEcommerce.PayPal
         private SimplisityInfo _postInfo;
         private SimplisityInfo _paramInfo;
         private CommandSecurity _commandSecurity;
-        private DNNrocketInterface _rocketInterface;
+        private RocketInterface _rocketInterface;
         private string _currentLang;
         private Dictionary<string, string> _passSettings;
         private SystemData _systemData;
@@ -24,7 +24,7 @@ namespace RocketEcommerce.PayPal
             paramCmd = paramCmd.ToLower();
 
             _systemData = new SystemData(systemInfo);
-            _rocketInterface = new DNNrocketInterface(interfaceInfo);
+            _rocketInterface = new RocketInterface(interfaceInfo);
 
             _postInfo = postInfo;
             _paramInfo = paramInfo;
