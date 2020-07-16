@@ -15,11 +15,11 @@ namespace RocketEcommerce.PayPal
         private const string _systemKey = "rocketecommerce";
         private string _guidKey;
         private DNNrocketController _objCtrl;
-        private PortalShop _portalShop;
+        private PortalShopLimpet _portalShop;
         public PayPalData(string siteGuid)
         {
             var portalid = PortalUtils.GetPortalIdBySiteKey(siteGuid);
-            _portalShop = new PortalShop(portalid, DNNrocketUtils.GetCurrentCulture());
+            _portalShop = new PortalShopLimpet(portalid, DNNrocketUtils.GetCurrentCulture());
             _guidKey = siteGuid + "_" + _systemKey;
             _objCtrl = new DNNrocketController();
             Info = _objCtrl.GetData(_guidKey, _entityTypeCode, DNNrocketUtils.GetCurrentCulture(), -1, true, _tableName);
