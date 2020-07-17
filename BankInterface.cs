@@ -13,7 +13,7 @@ namespace RocketEcommerce.PayPal
 {
     public class BankInterface : PaymentInterface
     {
-        public override string GetBankRemotePost(PaymentLimpet paymentData, SystemData systemInfoData)
+        public override string GetBankRemotePost(PaymentLimpet paymentData, SystemLimpet systemInfoData)
         {
             var rocketInterface = systemInfoData.GetInterface(paymentData.PaymentProvider);
             if (rocketInterface != null)
@@ -72,7 +72,7 @@ namespace RocketEcommerce.PayPal
             var ipn = new PayPalIpnParameters(postInfo);
             return ipn.item_number;
         }
-        public override PaymentLimpet NotifyEvent(PaymentLimpet paymentData, SimplisityInfo postInfo, SimplisityInfo paramInfo, SystemData systemInfoData)
+        public override PaymentLimpet NotifyEvent(PaymentLimpet paymentData, SimplisityInfo postInfo, SimplisityInfo paramInfo, SystemLimpet systemInfoData)
         {
             var rocketInterface = systemInfoData.GetInterface("paypal");
             if (rocketInterface != null)
@@ -107,7 +107,7 @@ namespace RocketEcommerce.PayPal
 
             return paymentData;
         }
-        public override PaymentLimpet ReturnEvent(PaymentLimpet paymentData, SimplisityInfo postInfo, SimplisityInfo paramInfo, SystemData systemInfoData)
+        public override PaymentLimpet ReturnEvent(PaymentLimpet paymentData, SimplisityInfo postInfo, SimplisityInfo paramInfo, SystemLimpet systemInfoData)
         {
 
             if (paymentData.Status == PaymentStatus.WaitingForBank)

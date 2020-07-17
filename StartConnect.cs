@@ -14,7 +14,7 @@ namespace RocketEcommerce.PayPal
         private RocketInterface _rocketInterface;
         private string _currentLang;
         private Dictionary<string, string> _passSettings;
-        private SystemData _systemData;
+        private SystemLimpet _systemData;
 
         public override Dictionary<string, object> ProcessCommand(string paramCmd, SimplisityInfo systemInfo, SimplisityInfo interfaceInfo, SimplisityInfo postInfo, SimplisityInfo paramInfo, string langRequired = "")
         {
@@ -23,7 +23,7 @@ namespace RocketEcommerce.PayPal
 
             paramCmd = paramCmd.ToLower();
 
-            _systemData = new SystemData(systemInfo);
+            _systemData = new SystemLimpet(systemInfo);
             _rocketInterface = new RocketInterface(interfaceInfo);
 
             _postInfo = postInfo;
