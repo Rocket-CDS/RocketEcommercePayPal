@@ -33,10 +33,10 @@ namespace RocketEcommerce.PayPal
                 rPost.Add("currency_code", paypalData.CurrencyCode);
                 rPost.Add("cancel_return", paypalData.ReturnUrl + "?status=0&key=" + paymentData.PaymentGuid);
                 rPost.Add("notify_url", paypalData.NotifyUrl + "?systemprovider=rocketecommerce&cmd=rocketecommerce_notify&key=" + paymentData.PaymentGuid);
-                rPost.Add("custom", DNNrocketUtils.GetCurrentCulture());
+                rPost.Add("custom", paypalData.PortalShop.CurrencyCultureCode);
                 rPost.Add("business", paypalData.PayPalId);
                 rPost.Add("item_name", paymentData.PaymentId.ToString(""));
-                rPost.Add("amount",  paypalData.PortalShop.CurrencyConvertCents(paymentData.AmountPay.ToString()).ToString());
+                rPost.Add("amount",  paypalData.PortalShop.CurrencyConvertCulture(paymentData.AmountPay.ToString()).ToString());
                 rPost.Add("shipping", "0");
                 rPost.Add("tax", "0");
                 rPost.Add("lc", DNNrocketUtils.GetCurrentCulture().Substring(3, 2));
@@ -71,7 +71,7 @@ namespace RocketEcommerce.PayPal
             var ipn = new PayPalIpnParameters(postInfo);
             return ipn.item_number;
         }
-        public override PaymentLimpet NotifyEvent(PaymentLimpet paymentData, SimplisityInfo postInfo, SimplisityInfo paramInfo, SystemLimpet systemInfoData)
+        public override string NotifyEvent(PaymentLimpet paymentData, SimplisityInfo postInfo, SimplisityInfo paramInfo, SystemLimpet systemInfoData)
         {
             var rocketInterface = systemInfoData.GetInterface("paypal");
             if (rocketInterface != null)
@@ -104,7 +104,7 @@ namespace RocketEcommerce.PayPal
                 }                       
             }
 
-            return paymentData;
+            return "OK";
         }
         public override PaymentLimpet ReturnEvent(PaymentLimpet paymentData, SimplisityInfo postInfo, SimplisityInfo paramInfo, SystemLimpet systemInfoData)
         {
