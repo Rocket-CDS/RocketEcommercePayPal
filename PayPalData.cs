@@ -15,11 +15,10 @@ namespace RocketEcommerce.PayPal
         private const string _systemKey = "rocketecommerce";
         private string _guidKey;
         private DNNrocketController _objCtrl;
-        private PortalShopLimpet _portalShop;
         public PayPalData(string siteGuid)
         {
             var portalid = PortalUtils.GetPortalIdBySiteKey(siteGuid);
-            _portalShop = new PortalShopLimpet(portalid, DNNrocketUtils.GetCurrentCulture());
+            PortalShop = new PortalShopLimpet(portalid, DNNrocketUtils.GetCurrentCulture());
             _guidKey = siteGuid + "_" + _systemKey;
             _objCtrl = new DNNrocketController();
             Info = _objCtrl.GetData(_guidKey, _entityTypeCode, DNNrocketUtils.GetCurrentCulture(), -1, true, _tableName);
@@ -46,7 +45,7 @@ namespace RocketEcommerce.PayPal
         public SimplisityInfo Info { get; set; }
         public string NotifyUrl
         {
-            get { return _portalShop.EngineUrl.TrimEnd('/') + "/Desktopmodules/dnnrocket/api/rocket/action"; }
+            get { return PortalShop.EngineUrl.TrimEnd('/') + "/Desktopmodules/dnnrocket/api/rocket/action"; }
         }
         public string ReturnUrl
         {
@@ -94,6 +93,7 @@ namespace RocketEcommerce.PayPal
             set { Info.SetXmlProperty("genxml/checkbox/debugmode", value.ToString()); }
         }
 
+        public PortalShopLimpet PortalShop { get; set; }
 
 
     }

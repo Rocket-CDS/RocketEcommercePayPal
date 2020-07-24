@@ -20,7 +20,6 @@ namespace RocketEcommerce.PayPal
             {
                 var rPost = new RemotePost();
                 var paypalData = new PayPalData(PortalUtils.SiteGuid());
-                var appliedtotal = paymentData.Amount.ToString("0.00").Replace(",", "");
                 var postUrl = paypalData.LivePostUrl;
                 if (paypalData.PreProduction) postUrl = paypalData.TestPostUrl;
 
@@ -37,7 +36,7 @@ namespace RocketEcommerce.PayPal
                 rPost.Add("custom", DNNrocketUtils.GetCurrentCulture());
                 rPost.Add("business", paypalData.PayPalId);
                 rPost.Add("item_name", paymentData.PaymentId.ToString(""));
-                rPost.Add("amount", appliedtotal);
+                rPost.Add("amount",  paypalData.PortalShop.CurrencyConvertCents(paymentData.AmountPaid.ToString()).ToString());
                 rPost.Add("shipping", "0");
                 rPost.Add("tax", "0");
                 rPost.Add("lc", DNNrocketUtils.GetCurrentCulture().Substring(3, 2));
