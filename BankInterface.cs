@@ -36,7 +36,7 @@ namespace RocketEcommerce.PayPal
                 rPost.Add("custom", DNNrocketUtils.GetCurrentCulture());
                 rPost.Add("business", paypalData.PayPalId);
                 rPost.Add("item_name", paymentData.PaymentId.ToString(""));
-                rPost.Add("amount",  paypalData.PortalShop.CurrencyConvertCents(paymentData.AmountPaid.ToString()).ToString());
+                rPost.Add("amount",  paypalData.PortalShop.CurrencyConvertCents(paymentData.AmountPay.ToString()).ToString());
                 rPost.Add("shipping", "0");
                 rPost.Add("tax", "0");
                 rPost.Add("lc", DNNrocketUtils.GetCurrentCulture().Substring(3, 2));
