@@ -87,20 +87,20 @@ namespace RocketEcommerce.PayPal
 
                     if (ProviderUtils.VerifyPayment(ipn, validateUrl))
                     {
-                        paymentData.Status  = PaymentStatus.PaymentOK;
+                        paymentData.Paid(true);
                     }
                     else
                     {
                         if (ipn.IsValid)
                         {
-                            paymentData.Status = PaymentStatus.PaymentNotVerified;
+                            paymentData.Paid(false);
                         }
                         else
                         {
-                            paymentData.Status = PaymentStatus.PaymentFailed;
+                            paymentData.PaymentFailed();
                         }
                     }
-                    paymentData.Update();
+                    paymentData.Update("paypal IPN");
                 }                       
             }
 
@@ -112,10 +112,12 @@ namespace RocketEcommerce.PayPal
             if (paymentData.Status == PaymentStatus.WaitingForBank)
             {
                 if (paramInfo.GetXmlPropertyInt("genxml/urlparams/status") == 0)
-                    paymentData.Status = PaymentStatus.PaymentFailed;
+                    paymentData.PaymentFailed();
                 else
-                    paymentData.Status = PaymentStatus.PaymentNotVerified;
-                paymentData.Update();
+                {
+                    paymentData.Paid(false);
+                }
+                paymentData.Update("paypal");
             }
             return paymentData;
         }
