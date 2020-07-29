@@ -92,6 +92,11 @@ namespace RocketEcommerce.PayPal
             get { return Info.GetXmlPropertyBool("genxml/checkbox/debugmode"); }
             set { Info.SetXmlProperty("genxml/checkbox/debugmode", value.ToString()); }
         }
+        public bool Active
+        {
+            get { return Info.GetXmlPropertyBool("genxml/checkbox/active"); }
+            set { Info.SetXmlProperty("genxml/checkbox/active", value.ToString()); }
+        }
 
         public PortalShopLimpet PortalShop { get; set; }
 
