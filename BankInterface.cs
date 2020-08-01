@@ -85,7 +85,9 @@ namespace RocketEcommerce.PayPal
             var rocketInterface = systemData.GetInterface("paypal");
             if (rocketInterface != null)
             {
-                PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), paramInfo.GetXmlProperty("genxml/urlparam/key"));
+                var guidkey = paramInfo.GetXmlProperty("genxml/urlparams/key");
+                if (guidkey == "") guidkey = paramInfo.GetXmlProperty("genxml/hidden/key");
+                PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), guidkey);
                 var ipn = new PayPalIpnParameters(postInfo);
                 if (paymentData.Status == PaymentStatus.WaitingForBank) // Only process if we are waiting for bank.
                 {
@@ -118,7 +120,9 @@ namespace RocketEcommerce.PayPal
         }
         public override PaymentLimpet ReturnEvent(SimplisityInfo postInfo, SimplisityInfo paramInfo)
         {
-            PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), paramInfo.GetXmlProperty("genxml/urlparam/key"));
+            var guidkey = paramInfo.GetXmlProperty("genxml/urlparams/key");
+            if (guidkey == "") guidkey = paramInfo.GetXmlProperty("genxml/hidden/key");
+            PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), guidkey);
             if (paymentData.Status == PaymentStatus.WaitingForBank)
             {
                 if (paramInfo.GetXmlPropertyInt("genxml/urlparams/status") == 0)
