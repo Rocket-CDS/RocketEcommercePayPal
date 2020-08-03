@@ -125,7 +125,9 @@ namespace RocketEcommerce.PayPal
             PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), guidkey);
             if (paymentData.Status == PaymentStatus.WaitingForBank)
             {
-                if (paramInfo.GetXmlPropertyInt("genxml/urlparams/status") == 0)
+                var status = paramInfo.GetXmlPropertyInt("genxml/urlparams/status");
+                if (status == 0) status = paramInfo.GetXmlPropertyInt("genxml/hidden/status");
+                if (status == 0)
                     paymentData.PaymentFailed();
                 else
                 {
