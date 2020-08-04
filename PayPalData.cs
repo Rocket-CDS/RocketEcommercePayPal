@@ -45,7 +45,7 @@ namespace RocketEcommerce.PayPal
         public SimplisityInfo Info { get; set; }
         public string NotifyUrl
         {
-            get { return PortalShop.EngineUrl.TrimEnd('/') + "/Desktopmodules/dnnrocket/api/rocket/action"; }
+            get { return PortalShop.EngineUrl.TrimEnd('/') + "/Desktopmodules/dnnrocket/api/rocket/actioncontent"; }
         }
         public string ReturnUrl
         {

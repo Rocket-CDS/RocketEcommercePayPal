@@ -88,9 +88,10 @@ namespace RocketEcommerce.PayPal
                 var guidkey = paramInfo.GetXmlProperty("genxml/urlparams/key");
                 if (guidkey == "") guidkey = paramInfo.GetXmlProperty("genxml/hidden/key");
                 PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), guidkey);
-                var ipn = new PayPalIpnParameters(postInfo);
-                if (paymentData.Status == PaymentStatus.WaitingForBank) // Only process if we are waiting for bank.
+                if (paymentData.Exists)
                 {
+                    // update bank action to IPN, so the return does not update the paymentData with a race condition
+                    var ipn = new PayPalIpnParameters(paramInfo);
                     paymentData.BankMessage = "version=2" + Environment.NewLine + "cdr=1";
                     var paypalData = new PayPalData(PortalUtils.SiteGuid());
                     var postUrl = paypalData.LivePostUrl;
@@ -113,17 +114,18 @@ namespace RocketEcommerce.PayPal
                         }
                     }
                     paymentData.Update("paypal IPN");
-                }                       
+                }
             }
 
             return "OK";
         }
+
         public override PaymentLimpet ReturnEvent(SimplisityInfo postInfo, SimplisityInfo paramInfo)
         {
             var guidkey = paramInfo.GetXmlProperty("genxml/urlparams/key");
             if (guidkey == "") guidkey = paramInfo.GetXmlProperty("genxml/hidden/key");
             PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), guidkey);
-            if (paymentData.Status == PaymentStatus.WaitingForBank)
+            if (paymentData.Exists)
             {
                 var status = paramInfo.GetXmlPropertyInt("genxml/urlparams/status");
                 if (status == 0) status = paramInfo.GetXmlPropertyInt("genxml/hidden/status");
@@ -133,7 +135,6 @@ namespace RocketEcommerce.PayPal
                 {
                     paymentData.Paid(false);
                 }
-                paymentData.Update("paypal");
             }
             return paymentData;
         }

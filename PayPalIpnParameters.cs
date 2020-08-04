@@ -9,13 +9,12 @@ namespace RocketEcommerce.PayPal
     public class PayPalIpnParameters
     {
 
-        public PayPalIpnParameters(SimplisityInfo postInfo)
+        public PayPalIpnParameters(SimplisityInfo paramInfo)
         {
-            _postString = "cmd=_notify-validate&" + postInfo.GetXmlProperty("genxml/requestcontent");
-            _payment_status = postInfo.GetXmlProperty("genxml/postform/payment_status");
-            _item_number = postInfo.GetXmlPropertyInt("genxml/postform/item_number");
-            _custom = postInfo.GetXmlProperty("genxml/postform/custom");
-
+            _postString = "cmd=_notify-validate&" + paramInfo.GetXmlProperty("genxml/requestcontent");
+            _payment_status = paramInfo.GetXmlProperty("genxml/form/payment_status");
+            _item_number = paramInfo.GetXmlPropertyInt("genxml/form/item_name");
+            _custom = paramInfo.GetXmlProperty("genxml/form/custom");
         }
 
         private string _postString = string.Empty;
