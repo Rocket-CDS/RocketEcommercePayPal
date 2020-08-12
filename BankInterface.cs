@@ -45,7 +45,7 @@ namespace RocketEcommerce.PayPal
                 rPost.Add("return", paypalData.ReturnUrl + "?status=1&key=" + paymentData.PaymentGuid);
                 rPost.Add("currency_code", paypalData.CurrencyCode);
                 rPost.Add("cancel_return", paypalData.ReturnUrl + "?status=0&key=" + paymentData.PaymentGuid);
-                rPost.Add("notify_url", paypalData.NotifyUrl + "?systemprovider=rocketecommerce&cmd=rocketecommerce_notify&key=" + paymentData.PaymentGuid);
+                rPost.Add("notify_url", paypalData.NotifyUrl + "?systemprovider=rocketecommerce&cmd=rocketecommerce_notify&paymentprovider=paypal");
                 rPost.Add("custom", paypalData.PortalShop.CurrencyCultureCode);
                 rPost.Add("business", paypalData.PayPalId);
                 rPost.Add("item_name", paymentData.PaymentId.ToString(""));
