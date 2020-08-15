@@ -49,7 +49,7 @@ namespace RocketEcommerce.PayPal
                 rPost.Add("custom", paypalData.PortalShop.CurrencyCultureCode);
                 rPost.Add("business", paypalData.PayPalId);
                 rPost.Add("item_name", paymentData.PaymentId.ToString(""));
-                rPost.Add("amount",  paypalData.PortalShop.CurrencyConvertCulture(paymentData.AmountPay.ToString()).ToString());
+                rPost.Add("amount",  paypalData.PortalShop.CurrencyConvertToCulture(paymentData.AmountPay.ToString()).ToString());
                 rPost.Add("shipping", "0");
                 rPost.Add("tax", "0");
                 rPost.Add("lc", DNNrocketUtils.GetCurrentCulture().Substring(3, 2));
@@ -120,7 +120,7 @@ namespace RocketEcommerce.PayPal
             return "OK";
         }
 
-        public override PaymentLimpet ReturnEvent(SimplisityInfo postInfo, SimplisityInfo paramInfo)
+        public override void ReturnEvent(SimplisityInfo postInfo, SimplisityInfo paramInfo)
         {
             var guidkey = paramInfo.GetXmlProperty("genxml/urlparams/key");
             if (guidkey == "") guidkey = paramInfo.GetXmlProperty("genxml/hidden/key");
@@ -136,7 +136,6 @@ namespace RocketEcommerce.PayPal
                     paymentData.Paid(false);
                 }
             }
-            return paymentData;
         }
     }
 }
