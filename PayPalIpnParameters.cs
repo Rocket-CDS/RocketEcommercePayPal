@@ -1,4 +1,5 @@
-﻿using Simplisity;
+﻿using DNNrocketAPI.Componants;
+using Simplisity;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,12 +10,12 @@ namespace RocketEcommerce.PayPal
     public class PayPalIpnParameters
     {
 
-        public PayPalIpnParameters(SimplisityInfo paramInfo)
+        public PayPalIpnParameters(RemoteLimpet remoteParam)
         {
-            _postString = "cmd=_notify-validate&" + paramInfo.GetXmlProperty("genxml/requestcontent");
-            _payment_status = paramInfo.GetXmlProperty("genxml/form/payment_status");
-            _item_number = paramInfo.GetXmlPropertyInt("genxml/form/item_name");
-            _custom = paramInfo.GetXmlProperty("genxml/form/custom");
+            _postString = "cmd=_notify-validate&" + remoteParam.Record.GetXmlProperty("genxml/requestcontent");
+            _payment_status = remoteParam.Record.GetXmlProperty("genxml/form/payment_status");
+            _item_number = remoteParam.Record.GetXmlPropertyInt("genxml/form/item_name");
+            _custom = remoteParam.Record.GetXmlProperty("genxml/form/custom");
         }
 
         private string _postString = string.Empty;

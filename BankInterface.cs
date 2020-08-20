@@ -79,19 +79,18 @@ namespace RocketEcommerce.PayPal
             }
             return "";
         }
-        public override string NotifyEvent(SimplisityInfo postInfo, SimplisityInfo paramInfo)
+        public override string NotifyEvent(RemoteLimpet remoteParam)
         {
             var systemData = new SystemLimpet("rocketecommerce");
             var rocketInterface = systemData.GetInterface("paypal");
             if (rocketInterface != null)
             {
-                var guidkey = paramInfo.GetXmlProperty("genxml/urlparams/key");
-                if (guidkey == "") guidkey = paramInfo.GetXmlProperty("genxml/hidden/key");
+                var guidkey = remoteParam.GetUrlParam("key");
                 PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), guidkey);
                 if (paymentData.Exists)
                 {
                     // update bank action to IPN, so the return does not update the paymentData with a race condition
-                    var ipn = new PayPalIpnParameters(paramInfo);
+                    var ipn = new PayPalIpnParameters(remoteParam);
                     paymentData.BankMessage = "version=2" + Environment.NewLine + "cdr=1";
                     var paypalData = new PayPalData(PortalUtils.SiteGuid());
                     var postUrl = paypalData.LivePostUrl;
@@ -120,16 +119,14 @@ namespace RocketEcommerce.PayPal
             return "OK";
         }
 
-        public override void ReturnEvent(SimplisityInfo postInfo, SimplisityInfo paramInfo)
+        public override void ReturnEvent(RemoteLimpet remoteParam)
         {
-            var guidkey = paramInfo.GetXmlProperty("genxml/urlparams/key");
-            if (guidkey == "") guidkey = paramInfo.GetXmlProperty("genxml/hidden/key");
+            var guidkey = remoteParam.GetUrlParam("key");
             PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), guidkey);
             if (paymentData.Exists)
             {
-                var status = paramInfo.GetXmlPropertyInt("genxml/urlparams/status");
-                if (status == 0) status = paramInfo.GetXmlPropertyInt("genxml/hidden/status");
-                if (status == 0)
+                var status = remoteParam.GetUrlParam("status");
+                if (status == "0")
                     paymentData.PaymentFailed();
                 else
                 {
