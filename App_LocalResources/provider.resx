@@ -165,8 +165,14 @@
   <data name="preproduction.Text" xml:space="preserve">
     <value>Pre-Production</value>
   </data>
+  <data name="returncommand.Help" xml:space="preserve">
+    <value>This is the server command that will be ran when the client returns to the website.  It wil be placed in the return URL as a parameter of "cmd".</value>
+  </data>
+  <data name="returncommand.Text" xml:space="preserve">
+    <value>Return Command</value>
+  </data>
   <data name="returnurl.Help" xml:space="preserve">
-    <value>This is the URL that the client will be returned to after payment. </value>
+    <value>This is the URL that the client will be returned to after payment. Use protocol but do not add parameters, any parameters required will be automatically added.</value>
   </data>
   <data name="returnurl.Text" xml:space="preserve">
     <value>Return URL</value>

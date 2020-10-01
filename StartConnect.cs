@@ -10,7 +10,7 @@ namespace RocketEcommerce.PayPal
     {
         private SimplisityInfo _postInfo;
         private SimplisityInfo _paramInfo;
-        private CommandSecurity _commandSecurity;
+        private SecurityLimet _securityData;
         private RocketInterface _rocketInterface;
         private string _currentLang;
         private Dictionary<string, string> _passSettings;
@@ -32,31 +32,29 @@ namespace RocketEcommerce.PayPal
             _currentLang = langRequired;
             if (_currentLang == "") _currentLang = DNNrocketUtils.GetCurrentCulture();
 
-            _commandSecurity = new CommandSecurity(-1, -1, _rocketInterface);
-            _commandSecurity.AddCommand("paypal_edit", true);
-            _commandSecurity.AddCommand("paypal_save", true);
-            _commandSecurity.AddCommand("paypal_delete", true);
+            _securityData = new SecurityLimet(PortalUtils.GetCurrentPortalId(), _systemData.SystemKey, _rocketInterface, -1, -1);
+            _securityData.AddCommand("paypal_edit", true);
+            _securityData.AddCommand("paypal_save", true);
+            _securityData.AddCommand("paypal_delete", true);
 
-            if (!_commandSecurity.HasSecurityAccess(paramCmd))
+            paramCmd = _securityData.HasSecurityAccess(paramCmd, "paypal_login");
+
+            switch (paramCmd)
             {
-                strOut = UserUtils.LoginForm(systemInfo, postInfo, _rocketInterface.InterfaceKey, UserUtils.GetCurrentUserId());
-            }
-            else
-            {
-                switch (paramCmd)
-                {
-                    case "paypal_edit":
-                        strOut = EditData();
-                        break;
-                    case "paypal_save":
-                        SaveData();
-                        strOut = EditData();
-                        break;
-                    case "paypal_delete":
-                        DeleteData();
-                        strOut = EditData();
-                        break;
-                }
+                case "paypal_login":
+                    strOut = UserUtils.LoginForm(systemInfo, postInfo, _rocketInterface.InterfaceKey, UserUtils.GetCurrentUserId());
+                    break;
+                case "paypal_edit":
+                    strOut = EditData();
+                    break;
+                case "paypal_save":
+                    SaveData();
+                    strOut = EditData();
+                    break;
+                case "paypal_delete":
+                    DeleteData();
+                    strOut = EditData();
+                    break;
             }
 
             if (!rtnDic.ContainsKey("outputjson")) rtnDic.Add("outputhtml", strOut);

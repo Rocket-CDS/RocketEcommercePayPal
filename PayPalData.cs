@@ -52,6 +52,11 @@ namespace RocketEcommerce.PayPal
             get { return Info.GetXmlProperty("genxml/textbox/returnurl"); }
             set { Info.SetXmlProperty("genxml/textbox/returnurl", value); }
         }
+        public string ReturnCmd
+        {
+            get { return Info.GetXmlProperty("genxml/textbox/returncommand"); }
+            set { Info.SetXmlProperty("genxml/textbox/returncommand", value); }
+        }
         public string TestPostUrl
         {
             get { return Info.GetXmlProperty("genxml/textbox/testposturl"); }

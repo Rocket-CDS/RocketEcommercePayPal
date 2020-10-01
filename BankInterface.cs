@@ -36,20 +36,20 @@ namespace RocketEcommerce.PayPal
                 var postUrl = paypalData.LivePostUrl;
                 if (paypalData.PreProduction) postUrl = paypalData.TestPostUrl;
 
-                // get the order data
+                var rtnUrl = paypalData.ReturnUrl + "?cmd=" + paypalData.ReturnCmd;
 
                 rPost.Url = postUrl;
 
                 rPost.Add("cmd", "_xclick");
                 rPost.Add("item_number", paymentData.PaymentId.ToString(""));
-                rPost.Add("return", paypalData.ReturnUrl + "?status=1&key=" + paymentData.PaymentGuid);
+                rPost.Add("return", rtnUrl + "&status=1&key=" + paymentData.PaymentGuid);
                 rPost.Add("currency_code", paypalData.CurrencyCode);
-                rPost.Add("cancel_return", paypalData.ReturnUrl + "?status=0&key=" + paymentData.PaymentGuid);
+                rPost.Add("cancel_return", rtnUrl + "&status=0&key=" + paymentData.PaymentGuid);
                 rPost.Add("notify_url", paypalData.NotifyUrl + "?systemprovider=rocketecommerce&cmd=rocketecommerce_notify&paymentprovider=paypal");
                 rPost.Add("custom", paypalData.PortalShop.CurrencyCultureCode);
                 rPost.Add("business", paypalData.PayPalId);
                 rPost.Add("item_name", paymentData.PaymentId.ToString(""));
-                rPost.Add("amount",  paypalData.PortalShop.CurrencyConvertToCulture(paymentData.AmountPay.ToString()).ToString());
+                rPost.Add("amount",  paymentData.AmountPay.ToString());
                 rPost.Add("shipping", "0");
                 rPost.Add("tax", "0");
                 rPost.Add("lc", DNNrocketUtils.GetCurrentCulture().Substring(3, 2));
