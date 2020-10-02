@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayPal", "PayPal.csproj", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RE_ManualPay", "..\RE_ManualPay\RE_ManualPay.csproj", "{4C33F9DE-5696-45CB-A6E4-85FCAB76463A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RE_Etransactions", "..\RE_Etransactions\RE_Etransactions.csproj", "{FEFD8F53-13B6-4CC9-B688-8FE54157CA6B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RocketSystemPay", "..\RocketSystemPay\RocketSystemPay.csproj", "{5B34D592-D24C-48BB-B9E3-9E4237B18C16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{4C33F9DE-5696-45CB-A6E4-85FCAB76463A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C33F9DE-5696-45CB-A6E4-85FCAB76463A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C33F9DE-5696-45CB-A6E4-85FCAB76463A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEFD8F53-13B6-4CC9-B688-8FE54157CA6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEFD8F53-13B6-4CC9-B688-8FE54157CA6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEFD8F53-13B6-4CC9-B688-8FE54157CA6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEFD8F53-13B6-4CC9-B688-8FE54157CA6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B34D592-D24C-48BB-B9E3-9E4237B18C16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B34D592-D24C-48BB-B9E3-9E4237B18C16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B34D592-D24C-48BB-B9E3-9E4237B18C16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B34D592-D24C-48BB-B9E3-9E4237B18C16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

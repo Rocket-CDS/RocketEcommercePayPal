@@ -8,6 +8,7 @@ using RocketEcommerce;
 using DNNrocketAPI.Componants;
 using RocketEcommerce.Interfaces;
 using RocketEcommerce.Componants;
+using System.Globalization;
 
 namespace RocketEcommerce.PayPal
 {
@@ -49,7 +50,8 @@ namespace RocketEcommerce.PayPal
                 rPost.Add("custom", paypalData.PortalShop.CurrencyCultureCode);
                 rPost.Add("business", paypalData.PayPalId);
                 rPost.Add("item_name", paymentData.PaymentId.ToString(""));
-                rPost.Add("amount",  paymentData.AmountPay.ToString());
+                var aPay = paymentData.AmountPayCents.ToString();
+                rPost.Add("amount", aPay.Substring(0, aPay.Length - 2) + "." + aPay.Substring(aPay.Length - 2)); // use en-US format, regardless of currency. (Seems Odd and even wrong!!!) 
                 rPost.Add("shipping", "0");
                 rPost.Add("tax", "0");
                 rPost.Add("lc", DNNrocketUtils.GetCurrentCulture().Substring(3, 2));
