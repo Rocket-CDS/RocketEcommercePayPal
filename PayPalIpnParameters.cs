@@ -12,7 +12,7 @@ namespace RocketEcommerce.PayPal
 
         public PayPalIpnParameters(RemoteLimpet remoteParam)
         {
-            _postString = "cmd=_notify-validate&" + remoteParam.Record.GetXmlProperty("genxml/requestcontent");
+            _postString = "cmd=_notify-validate&" + remoteParam.Record.GetXmlPropertyRaw("genxml/requestcontent");
             _payment_status = remoteParam.Record.GetXmlProperty("genxml/form/payment_status");
             _item_number = remoteParam.Record.GetXmlPropertyInt("genxml/form/item_name");
             _custom = remoteParam.Record.GetXmlProperty("genxml/form/custom");
