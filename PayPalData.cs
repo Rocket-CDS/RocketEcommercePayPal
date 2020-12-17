@@ -1,6 +1,6 @@
 ﻿using DNNrocketAPI;
-using DNNrocketAPI.Componants;
-using RocketEcommerce.Componants;
+using DNNrocketAPI.Components;
+using RocketEcommerce.Components;
 using Simplisity;
 using System;
 using System.Collections.Generic;

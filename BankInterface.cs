@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using RocketEcommerce;
-using DNNrocketAPI.Componants;
+using DNNrocketAPI.Components;
 using RocketEcommerce.Interfaces;
-using RocketEcommerce.Componants;
+using RocketEcommerce.Components;
 using System.Globalization;
 
 namespace RocketEcommerce.PayPal

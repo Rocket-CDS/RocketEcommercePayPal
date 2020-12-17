@@ -1,5 +1,5 @@
 ﻿using DNNrocketAPI;
-using DNNrocketAPI.Componants;
+using DNNrocketAPI.Components;
 using Simplisity;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace RocketEcommerce.PayPal
     {
         private SimplisityInfo _postInfo;
         private SimplisityInfo _paramInfo;
-        private SecurityLimet _securityData;
+        private SecurityLimpet _securityData;
         private RocketInterface _rocketInterface;
         private string _currentLang;
         private Dictionary<string, string> _passSettings;
@@ -32,7 +32,7 @@ namespace RocketEcommerce.PayPal
             _currentLang = langRequired;
             if (_currentLang == "") _currentLang = DNNrocketUtils.GetCurrentCulture();
 
-            _securityData = new SecurityLimet(PortalUtils.GetCurrentPortalId(), _systemData.SystemKey, _rocketInterface, -1, -1);
+            _securityData = new SecurityLimpet(PortalUtils.GetCurrentPortalId(), _systemData.SystemKey, _rocketInterface, -1, -1);
             _securityData.AddCommand("paypal_edit", true);
             _securityData.AddCommand("paypal_save", true);
             _securityData.AddCommand("paypal_delete", true);
