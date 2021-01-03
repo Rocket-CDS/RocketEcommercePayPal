@@ -1,0 +1,33 @@
+<root>
+	<version>1.0.0</version>
+	<!-- Include only files that match the regular expression -->
+	<regexpr>(\.cshtml|\.html|\.resx|\.dnn|\.png|\.css|\.js|\.xml|\.txt|\.md)$</regexpr>
+	<directory include='false'>
+		<!-- All paths should be from the source root (project root) -->
+		<value>\.git</value>
+		<value>\.vs</value>
+		<value>\bin</value>
+		<value>\Componants</value>
+		<value>\Documentation</value>
+		<value>\Examples</value>
+		<value>\Interfaces</value>
+		<value>\obj</value>
+		<value>\packages</value>
+		<value>\Providers</value>
+		<value>\Theme</value>
+	</directory>
+  <file include='false'>
+  </file>
+  <file include='true'>
+		<!-- All paths should be from the source root (project root) -->
+    <!-- These files will be NOT in the Resource.zip, they will be on the root of the install zip -->
+    <value>\Installation\RocketEcommercePayPal_system.xml</value>    
+  </file>
+  <!-- The bin path gives the backward folder levels to the DNN bin folder, so assemblies can be taken. -->
+	<!-- In some cases, if the project folder is not under a company level, this will need to be change. -->
+	<binfolder>\\..\\..\\..\\bin</binfolder>
+	<assembly>
+		<!-- Assembllies will be taken from the DNN bin folder, and placed on root. -->
+		<value>RocketEcommercePayPal.dll</value>
+	</assembly>
+</root>
