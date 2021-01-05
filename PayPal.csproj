@@ -6,23 +6,14 @@
     <AssemblyName>RocketEcommercePayPal</AssemblyName>
   </PropertyGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy &quot;$(ProjectDir)$(OutDir)$(TargetFileName)&quot; &quot;$(ProjectDir)..\..\..\bin\$(TargetFileName)&quot;&#xD;&#xA;&#xD;&#xA;copy &quot;$(ProjectDir)$(OutDir)$(AssemblyName).pdb&quot; &quot;$(ProjectDir)..\..\..\bin\$(AssemblyName).pdb&quot;&#xD;&#xA;&#xD;&#xA;" />
-  </Target>
-
   <ItemGroup>
-    <Reference Include="DNNrocketAPI">
-      <HintPath>..\..\..\bin\DNNrocketAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="RazorEngine">
-      <HintPath>..\..\..\bin\RazorEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="RocketEcommerce">
-      <HintPath>..\..\..\bin\RocketEcommerce.dll</HintPath>
-    </Reference>
-    <Reference Include="Simplisity">
-      <HintPath>..\..\..\bin\Simplisity.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\DNNrocket\API\DNNrocketAPI.csproj" />
+    <ProjectReference Include="..\..\DNNrocket\Simplisity\Simplisity.csproj" />
+    <ProjectReference Include="..\RocketEcommerce\RocketEcommerce.csproj" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="C:\Nevoweb\Projects\Utils\DNNpackager\bin\netcoreapp3.1\DNNpackager.exe  $(ProjectDir) C:\Nevoweb\Websites\www.dnnrocket.com\Install\DesktopModules\DNNrocketModules\RocketEcommercePayPal $(ProjectDir)$(OutDir) C:\Nevoweb\Websites\www.dnnrocket.com\Install\bin $(ConfigurationName)&#xD;&#xA;" />
+  </Target>
 
 </Project>
