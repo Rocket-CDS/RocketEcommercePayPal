@@ -81,18 +81,18 @@ namespace RocketEcommerce.PayPal
             }
             return "";
         }
-        public override string NotifyEvent(RemoteLimpet remoteParam)
+        public override string NotifyEvent(SessionParams sessionParams)
         {
             var systemData = new SystemLimpet("rocketecommerce");
             var rocketInterface = systemData.GetInterface("paypal");
             if (rocketInterface != null)
             {
-                var guidkey = remoteParam.GetUrlParam("key");
+                var guidkey = sessionParams.Get("key");
                 PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), guidkey);
                 if (paymentData.Exists)
                 {
                     // update bank action to IPN, so the return does not update the paymentData with a race condition
-                    var ipn = new PayPalIpnParameters(remoteParam);
+                    var ipn = new PayPalIpnParameters(sessionParams);
                     paymentData.BankMessage = "version=2" + Environment.NewLine + "cdr=1";
                     var paypalData = new PayPalData(PortalUtils.SiteGuid());
                     var postUrl = paypalData.LivePostUrl;
@@ -121,13 +121,13 @@ namespace RocketEcommerce.PayPal
             return "OK";
         }
 
-        public override void ReturnEvent(RemoteLimpet remoteParam)
+        public override void ReturnEvent(SessionParams sessionParams)
         {
-            var guidkey = remoteParam.GetUrlParam("key");
+            var guidkey = sessionParams.Get("key");
             PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), guidkey);
             if (paymentData.Exists)
             {
-                var status = remoteParam.GetUrlParam("status");
+                var status = sessionParams.Get("status");
                 if (status == "0")
                     paymentData.PaymentFailed();
                 else

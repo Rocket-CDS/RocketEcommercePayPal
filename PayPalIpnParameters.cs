@@ -10,12 +10,12 @@ namespace RocketEcommerce.PayPal
     public class PayPalIpnParameters
     {
 
-        public PayPalIpnParameters(RemoteLimpet remoteParam)
+        public PayPalIpnParameters(SessionParams sessionParams)
         {
-            _postString = "cmd=_notify-validate&" + remoteParam.Record.GetXmlPropertyRaw("genxml/requestcontent");
-            _payment_status = remoteParam.Record.GetXmlProperty("genxml/form/payment_status");
-            _item_number = remoteParam.Record.GetXmlPropertyInt("genxml/form/item_name");
-            _custom = remoteParam.Record.GetXmlProperty("genxml/form/custom");
+            _postString = "cmd=_notify-validate&" + sessionParams.Get("genxml/requestcontent");
+            _payment_status = sessionParams.Get("genxml/form/payment_status");
+            _item_number = sessionParams.GetInt("genxml/form/item_name");
+            _custom = sessionParams.Get("genxml/form/custom");
         }
 
         private string _postString = string.Empty;

@@ -5,6 +5,8 @@
     <RootNamespace>RocketEcommerce.PayPal</RootNamespace>
     <AssemblyName>RocketEcommercePayPal</AssemblyName>
     <Configurations>Debug;Release;Razor</Configurations>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
