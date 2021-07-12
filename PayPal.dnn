@@ -50,10 +50,11 @@
 
         <component type="File">
           <files>
-            <basePath>DesktopModules\DNNrocket\API\Systems\</basePath>
+            <basePath>DesktopModules\DNNrocketModules\RocketEcommerce\Plugins</basePath>
             <file>
-              <name>RocketEcommercePayPal_system.xml</name>
-            </file>
+              <name>paypal.rules</name>
+              <sourceFileName>system.rules</sourceFileName>
+            </file>            
           </files>
         </component>
 

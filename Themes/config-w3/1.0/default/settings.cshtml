@@ -5,7 +5,6 @@
 @using System.Xml
 @using Simplisity;
 @using DNNrocketAPI.Components;
-@using DNNrocketAPI;
 
 @{
     var info = (SimplisityInfo)Model.List.First();
@@ -18,20 +17,22 @@
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketEcommercePayPal/App_LocalResources/")
 
 
-    <div class="w3-row w3-padding">
-        <div class="w3-col m2 rocket-buttonbar w3-button w3-khaki " onclick="window.location.reload(false);">@ButtonText(ButtonTypes.back)</div>
-        <div class="w3-col m2 rocket-buttonbar w3-button w3-green simplisity_click " s-cmd="paypal_save" s-post="#datasave" s-fields=''>@ButtonText(ButtonTypes.save)</div>
-        @if (Model.GetSettingBool("saved"))
-        {
-            <i class='fas fa-save w3-right simplisity_fadeout' style="font-size:24px"></i>
-        }
-    </div>
+<div class="w3-container ">
+    <h2><i class="fab fa-paypal fa-x3"></i>&nbsp;@ResourceKey("provider.paypalsettings")</h2>
+</div>
+
+<div class="w3-row w3-padding">
+    <div class="w3-button" onclick="window.location.reload(false);">@ButtonIcon(ButtonTypes.back)</div>
+    <div class="w3-button w3-theme-action simplisity_click " s-cmd="paypal_save" s-post="#datasave" s-fields=''>@ButtonText(ButtonTypes.save)</div>
+    @if (Model.GetSettingBool("saved"))
+    {
+        <span class="simplisity_fadeout">
+            @ButtonIcon(ButtonTypes.save)
+        </span>
+    }
+</div>
 
 <div id="datasave" class="w3-margin-top">
-
-    <div class="w3-container ">
-        <h2><i class="fab fa-paypal fa-x3"></i>&nbsp;@ResourceKey("provider.paypalsettings")</h2>
-    </div>
 
     <div class="w3-container">
         <label>Assembly</label>

@@ -15,6 +15,7 @@ namespace RocketEcommerce.PayPal
         private string _currentLang;
         private Dictionary<string, string> _passSettings;
         private SystemLimpet _systemData;
+        private const string _systemkey = "rocketecommerce";
 
         public override Dictionary<string, object> ProcessCommand(string paramCmd, SimplisityInfo systemInfo, SimplisityInfo interfaceInfo, SimplisityInfo postInfo, SimplisityInfo paramInfo, string langRequired = "")
         {
@@ -23,7 +24,7 @@ namespace RocketEcommerce.PayPal
 
             paramCmd = paramCmd.ToLower();
 
-            _systemData = new SystemLimpet(systemInfo);
+            _systemData = new SystemLimpet(_systemkey);
             _rocketInterface = new RocketInterface(interfaceInfo);
 
             _postInfo = postInfo;
@@ -42,7 +43,7 @@ namespace RocketEcommerce.PayPal
             switch (paramCmd)
             {
                 case "paypal_login":
-                    strOut = UserUtils.LoginForm(systemInfo, postInfo, _rocketInterface.InterfaceKey, UserUtils.GetCurrentUserId());
+                    strOut = UserUtils.LoginForm(_systemkey, postInfo, _rocketInterface.InterfaceKey, UserUtils.GetCurrentUserId());
                     break;
                 case "paypal_edit":
                     strOut = EditData();
@@ -64,8 +65,8 @@ namespace RocketEcommerce.PayPal
         public String EditData()
         {
             var paypalData = new PayPalData(PortalUtils.SiteGuid());
-
-            var razorTempl = RenderRazorUtils.GetRazorTemplateData(_rocketInterface.DefaultTemplate, _rocketInterface.TemplateRelPath, _rocketInterface.DefaultTheme , _currentLang, _rocketInterface.ThemeVersion, true);
+            var appThemeSystem = new AppThemeSystemLimpet("RocketEcommercePayPal");
+            var razorTempl = appThemeSystem.GetTemplate("settings.cshtml");
             var strOut = RenderRazorUtils.RazorDetail(razorTempl, paypalData.Info, _passSettings, new SessionParams(_paramInfo), true);
             return strOut;
         }
