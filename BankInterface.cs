@@ -136,5 +136,22 @@ namespace RocketEcommerce.PayPal
                 }
             }
         }
+        public override string PayButtonText()
+        {
+            var payData = new PayPalData(PortalUtils.SiteGuid());
+            return payData.PayButtonText;
+        }
+
+        public override string PayMsg()
+        {
+            var payData = new PayPalData(PortalUtils.SiteGuid());
+            return payData.PayMsg;
+        }
+
+        public override string PaymentProvKey()
+        {
+            var payData = new PayPalData(PortalUtils.SiteGuid());
+            return payData.PaymentProvKey;
+        }
     }
 }

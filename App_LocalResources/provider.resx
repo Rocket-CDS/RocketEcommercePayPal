@@ -123,6 +123,9 @@
   <data name="backupurl.Text" xml:space="preserve">
     <value>Backup URL</value>
   </data>
+  <data name="bankpayment.Text" xml:space="preserve">
+    <value>PayPal</value>
+  </data>
   <data name="charset.Text" xml:space="preserve">
     <value>Charecter Set</value>
   </data>
@@ -153,11 +156,17 @@
   <data name="pay.Text" xml:space="preserve">
     <value>Pay with PayPal</value>
   </data>
+  <data name="paybuttontext.Text" xml:space="preserve">
+    <value>Button Text (html)</value>
+  </data>
+  <data name="paymsg.Text" xml:space="preserve">
+    <value>Pay Message (html)</value>
+  </data>
   <data name="paynow.Text" xml:space="preserve">
     <value>Pay Now with Pay Pal</value>
   </data>
   <data name="paypal.Text" xml:space="preserve">
-    <value>Pay Pal</value>
+    <value>PayPal</value>
   </data>
   <data name="paypalid.Text" xml:space="preserve">
     <value>PayPal ID (Account Name)</value>

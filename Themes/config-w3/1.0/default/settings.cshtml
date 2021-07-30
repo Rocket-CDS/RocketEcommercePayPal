@@ -120,6 +120,19 @@
             </div>
 
         </div>
+        <div class="w3-row">
+            <div class="w3-twothird">
+                <label>@ResourceKey("provider.paybuttontext")</label>
+                @TextBox(info, "genxml/lang/genxml/textbox/paybuttontext", "class='form-control w3-input w3-border'  autocomplete='off'", ResourceKey("provider.bankpayment").ToString())
+            </div>
+        </div>
+
+        <div class="w3-row">
+            <div class="w3-twothird">
+                <label>@ResourceKey("provider.paymsg")</label>
+                @TextArea(info, "genxml/lang/genxml/textbox/paymsg", "class='form-control w3-input w3-border'  autocomplete='off'", "")
+            </div>
+        </div>
 
         <hr />
 

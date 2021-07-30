@@ -105,6 +105,23 @@ namespace RocketEcommerce.PayPal
 
         public PortalShopLimpet PortalShop { get; set; }
 
+        public string PayButtonText
+        {
+            get
+            {
+                var rtn = Info.GetXmlProperty("genxml/lang/genxml/textbox/paybuttontext");
+                if (rtn == "") rtn = DNNrocketUtils.GetResourceString("/DesktopModules/DNNrocketModules/RocketEcommerce/App_LocalResources/", "RE.bankpayment", "Text", "");
+                return rtn;
+            }
+            set { Info.SetXmlProperty("genxml/lang/genxml/textbox/paybuttontext", value); }
+        }
+        public string PayMsg
+        {
+            get { return Info.GetXmlProperty("genxml/lang/genxml/textbox/paymsg"); }
+            set { Info.SetXmlProperty("genxml/lang/genxml/textbox/paymsg", value); }
+        }
+
+        public string PaymentProvKey { get { return "paypal"; } }
 
     }
 }
