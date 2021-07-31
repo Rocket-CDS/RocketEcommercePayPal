@@ -15,7 +15,7 @@
           <namespaceclass>RocketEcommerce.PayPal.BankInterface</namespaceclass>
           <assembly>RocketEcommercePayPal</assembly>
           <interfaceicon></interfaceicon>
-          <defaultcommand></defaultcommand>
+          <defaultcommand>paypal_edit</defaultcommand>
           <relpath>/DesktopModules/DNNrocketModules/RocketEcommercePayPal</relpath>
         </textbox>
         <providertype>payment</providertype>
