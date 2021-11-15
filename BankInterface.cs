@@ -81,18 +81,20 @@ namespace RocketEcommerce.PayPal
             }
             return "";
         }
-        public override string NotifyEvent(SessionParams sessionParams)
+        public override string NotifyEvent(SimplisityInfo paramInfo)
         {
             var systemData = new SystemLimpet("rocketecommerce");
             var rocketInterface = systemData.GetInterface("paypal");
             if (rocketInterface != null)
             {
-                var guidkey = sessionParams.Get("key");
-                PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), guidkey);
+                var paymentKey = paramInfo.GetXmlProperty("genxml/remote/urlparams/key");
+                if (paymentKey == "") paymentKey = paramInfo.GetXmlProperty("genxml/urlparams/key");
+                if (paymentKey == "") paymentKey = paramInfo.GetXmlProperty("genxml/hidden/key");
+                PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), paymentKey);
                 if (paymentData.Exists)
                 {
                     // update bank action to IPN, so the return does not update the paymentData with a race condition
-                    var ipn = new PayPalIpnParameters(sessionParams);
+                    var ipn = new PayPalIpnParameters(paramInfo);
                     paymentData.BankMessage = "version=2" + Environment.NewLine + "cdr=1";
                     var paypalData = new PayPalData(PortalUtils.SiteGuid());
                     var postUrl = paypalData.LivePostUrl;
@@ -121,13 +123,17 @@ namespace RocketEcommerce.PayPal
             return "OK";
         }
 
-        public override void ReturnEvent(SessionParams sessionParams)
+        public override void ReturnEvent(SimplisityInfo paramInfo)
         {
-            var guidkey = sessionParams.Get("key");
-            PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), guidkey);
+            var paymentKey = paramInfo.GetXmlProperty("genxml/remote/urlparams/key");
+            if (paymentKey == "") paymentKey = paramInfo.GetXmlProperty("genxml/urlparams/key");
+            if (paymentKey == "") paymentKey = paramInfo.GetXmlProperty("genxml/hidden/key");
+            PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), paymentKey);
             if (paymentData.Exists)
             {
-                var status = sessionParams.Get("status");
+                var status = paramInfo.GetXmlProperty("genxml/remote/urlparams/key");
+                if (status == "") status = paramInfo.GetXmlProperty("genxml/urlparams/key");
+                if (status == "") status = paramInfo.GetXmlProperty("genxml/hidden/key");
                 if (status == "0")
                     paymentData.PaymentFailed();
                 else
