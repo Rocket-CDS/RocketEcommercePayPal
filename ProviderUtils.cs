@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simplisity;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -9,6 +10,17 @@ namespace RocketEcommerce.PayPal
 {
     public class ProviderUtils
     {
+        public static string GetParam(SimplisityInfo paramInfo, string name)
+        {
+            var refKey = paramInfo.GetXmlProperty("genxml/remote/urlparams/" + name);
+            if (refKey == "") refKey = paramInfo.GetXmlProperty("genxml/urlparams/" + name);
+            if (refKey == "") refKey = paramInfo.GetXmlProperty("genxml/hidden/" + name);
+            if (refKey == "") refKey = paramInfo.GetXmlProperty("genxml/form/" + name);
+            if (refKey == "") refKey = paramInfo.GetXmlProperty("genxml/remote/urlparams/" + name);
+            if (refKey == "") refKey = paramInfo.GetXmlProperty("genxml/remote/hidden/" + name);
+            if (refKey == "") refKey = paramInfo.GetXmlProperty("genxml/remote/form/" + name);
+            return refKey;
+        }
         public static bool VerifyPayment(PayPalIpnParameters ipn, string verifyURL)
         {
             try
