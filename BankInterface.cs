@@ -83,41 +83,37 @@ namespace RocketEcommerce.PayPal
         }
         public override string NotifyEvent(SimplisityInfo paramInfo)
         {
-            var systemData = new SystemLimpet("rocketecommerce");
-            var rocketInterface = systemData.GetInterface("paypal");
-            if (rocketInterface != null)
-            {
-                var paymentKey = ProviderUtils.GetParam(paramInfo, "key");
-                PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), paymentKey);
-                if (paymentData.Exists)
-                {
-                    // update bank action to IPN, so the return does not update the paymentData with a race condition
-                    var ipn = new PayPalIpnParameters(paramInfo);
-                    paymentData.BankMessage = "version=2" + Environment.NewLine + "cdr=1";
-                    var paypalData = new PayPalData(PortalUtils.SiteGuid());
-                    var postUrl = paypalData.LivePostUrl;
-                    if (paypalData.PreProduction) postUrl = paypalData.TestPostUrl;
-                    var validateUrl = postUrl + "?" + ipn.PostString;
+            LogUtils.LogSystem("PayPal NotifyEvent: " + paramInfo.XMLData);
 
-                    if (ProviderUtils.VerifyPayment(ipn, validateUrl))
+            var paymentKey = ProviderUtils.GetParam(paramInfo, "key");
+            PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), paymentKey);
+            if (paymentData.Exists)
+            {
+                // update bank action to IPN, so the return does not update the paymentData with a race condition
+                var ipn = new PayPalIpnParameters(paramInfo);
+                paymentData.BankMessage = "version=2" + Environment.NewLine + "cdr=1";
+                var paypalData = new PayPalData(PortalUtils.SiteGuid());
+                var postUrl = paypalData.LivePostUrl;
+                if (paypalData.PreProduction) postUrl = paypalData.TestPostUrl;
+                var validateUrl = postUrl + "?" + ipn.PostString;
+
+                if (ProviderUtils.VerifyPayment(ipn, validateUrl))
+                {
+                    paymentData.Paid(true);
+                }
+                else
+                {
+                    if (ipn.IsValid)
                     {
-                        paymentData.Paid(true);
+                        paymentData.Paid(false);
                     }
                     else
                     {
-                        if (ipn.IsValid)
-                        {
-                            paymentData.Paid(false);
-                        }
-                        else
-                        {
-                            paymentData.PaymentFailed();
-                        }
+                        paymentData.PaymentFailed();
                     }
-                    paymentData.Update("paypal IPN");
                 }
+                paymentData.Update("paypal IPN");
             }
-
             return "OK";
         }
 
