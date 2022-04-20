@@ -1,5 +1,6 @@
 ﻿using DNNrocketAPI;
 using DNNrocketAPI.Components;
+using RocketEcommerce.Components;
 using Simplisity;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace RocketEcommerce.PayPal
         private Dictionary<string, string> _passSettings;
         private SystemLimpet _systemData;
         private const string _systemkey = "rocketecommerce";
+        private SessionParams _sessionParams;
 
         public override Dictionary<string, object> ProcessCommand(string paramCmd, SimplisityInfo systemInfo, SimplisityInfo interfaceInfo, SimplisityInfo postInfo, SimplisityInfo paramInfo, string langRequired = "")
         {
@@ -26,12 +28,9 @@ namespace RocketEcommerce.PayPal
 
             _systemData = new SystemLimpet(_systemkey);
             _rocketInterface = new RocketInterface(interfaceInfo);
-
+            _sessionParams = new SessionParams(paramInfo);
             _postInfo = postInfo;
             _paramInfo = paramInfo;
-
-            _currentLang = langRequired;
-            if (_currentLang == "") _currentLang = DNNrocketUtils.GetCurrentCulture();
 
             _securityData = new SecurityLimpet(PortalUtils.GetCurrentPortalId(), _systemData.SystemKey, _rocketInterface, -1, -1);
             _securityData.AddCommand("paypal_edit", true);
@@ -43,7 +42,7 @@ namespace RocketEcommerce.PayPal
             switch (paramCmd)
             {
                 case "paypal_login":
-                    strOut = UserUtils.LoginForm(_systemkey, postInfo, _rocketInterface.InterfaceKey, UserUtils.GetCurrentUserId());
+                    strOut = LocalUtils.ReloadPage(PortalUtils.GetPortalId());
                     break;
                 case "paypal_edit":
                     strOut = EditData();
@@ -64,20 +63,21 @@ namespace RocketEcommerce.PayPal
 
         public String EditData()
         {
-            var paypalData = new PayPalData(PortalUtils.SiteGuid());
+            var paypalData = new PayPalData(PortalUtils.GetPortalId(), _sessionParams.CultureCodeEdit);
             var appThemeSystem = new AppThemeSystemLimpet("RocketEcommercePayPal");
             var razorTempl = appThemeSystem.GetTemplate("settings.cshtml");
-            var strOut = RenderRazorUtils.RazorDetail(razorTempl, paypalData.Info, _passSettings, new SessionParams(_paramInfo), true);
-            return strOut;
+            var pr = RenderRazorUtils.RazorProcessData(razorTempl, paypalData.Info, null, _passSettings, _sessionParams, true);
+            if (pr.StatusCode != "00") return pr.ErrorMsg;
+            return pr.RenderedText;
         }
         public void SaveData()
         {
-            var paypalData = new PayPalData(PortalUtils.SiteGuid());
+            var paypalData = new PayPalData(PortalUtils.GetPortalId(), _sessionParams.CultureCodeEdit);
             paypalData.Save(_postInfo);
         }
         public void DeleteData()
         {
-            var paypalData = new PayPalData(PortalUtils.SiteGuid());
+            var paypalData = new PayPalData(PortalUtils.GetPortalId(), _sessionParams.CultureCodeEdit);
             paypalData.Delete();
         }
 

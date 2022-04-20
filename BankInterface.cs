@@ -20,7 +20,7 @@ namespace RocketEcommerce.PayPal
             var rocketInterface = systemData.GetInterface("paypal");
             if (rocketInterface != null)
             {
-                var payData = new PayPalData(PortalUtils.SiteGuid());
+                var payData = new PayPalData(PortalUtils.GetCurrentPortalId(), DNNrocketUtils.GetCurrentCulture());
                 return payData.Active;
             }
             return false;
@@ -33,7 +33,7 @@ namespace RocketEcommerce.PayPal
             if (rocketInterface != null)
             {
                 var rPost = new RemotePost();
-                var paypalData = new PayPalData(PortalUtils.SiteGuid());
+                var paypalData = new PayPalData(PortalUtils.GetCurrentPortalId(), DNNrocketUtils.GetCurrentCulture());
                 var postUrl = paypalData.LivePostUrl;
                 if (paypalData.PreProduction) postUrl = paypalData.TestPostUrl;
 
@@ -92,7 +92,7 @@ namespace RocketEcommerce.PayPal
                 // update bank action to IPN, so the return does not update the paymentData with a race condition
                 var ipn = new PayPalIpnParameters(paramInfo);
                 paymentData.BankMessage = "version=2" + Environment.NewLine + "cdr=1";
-                var paypalData = new PayPalData(PortalUtils.SiteGuid());
+                var paypalData = new PayPalData(PortalUtils.GetCurrentPortalId(), DNNrocketUtils.GetCurrentCulture());
                 var postUrl = paypalData.LivePostUrl;
                 if (paypalData.PreProduction) postUrl = paypalData.TestPostUrl;
                 var validateUrl = postUrl + "?" + ipn.PostString;
@@ -136,19 +136,19 @@ namespace RocketEcommerce.PayPal
         }
         public override string PayButtonText()
         {
-            var payData = new PayPalData(PortalUtils.SiteGuid());
+            var payData = new PayPalData(PortalUtils.GetCurrentPortalId(), DNNrocketUtils.GetCurrentCulture());
             return payData.PayButtonText;
         }
 
         public override string PayMsg()
         {
-            var payData = new PayPalData(PortalUtils.SiteGuid());
+            var payData = new PayPalData(PortalUtils.GetCurrentPortalId(), DNNrocketUtils.GetCurrentCulture());
             return payData.PayMsg;
         }
 
         public override string PaymentProvKey()
         {
-            var payData = new PayPalData(PortalUtils.SiteGuid());
+            var payData = new PayPalData(PortalUtils.GetCurrentPortalId(), DNNrocketUtils.GetCurrentCulture());
             return payData.PaymentProvKey;
         }
     }
