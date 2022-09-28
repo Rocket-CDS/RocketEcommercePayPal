@@ -64,7 +64,7 @@ namespace RocketEcommerce.PayPal
         public String EditData()
         {
             var paypalData = new PayPalData(PortalUtils.GetPortalId(), _sessionParams.CultureCodeEdit);
-            var appThemeSystem = new AppThemeSystemLimpet("RocketEcommercePayPal");
+            var appThemeSystem = new AppThemeSystemLimpet(PortalUtils.GetPortalId(), "RocketEcommercePayPal");
             var razorTempl = appThemeSystem.GetTemplate("settings.cshtml");
             var pr = RenderRazorUtils.RazorProcessData(razorTempl, paypalData.Info, null, _passSettings, _sessionParams, true);
             if (pr.StatusCode != "00") return pr.ErrorMsg;
