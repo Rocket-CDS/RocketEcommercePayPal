@@ -18,10 +18,10 @@
 
 @RenderLanguageSelector("paypal_edit", "", "rocketecommerce", Model)
 
-<div class="w3-row w3-padding">
-    <div class="w3-button" onclick="window.location.reload(false);">@ButtonIcon(ButtonTypes.back)</div>
-    <div class="w3-button w3-theme-action simplisity_click " s-cmd="paypal_save" s-post="#datasave" s-fields=''>@ButtonText(ButtonTypes.save)</div>
-    <div class="w3-button w3-red w3-right simplisity_confirmclick " s-confirm="@ResourceKey("DNNrocket.delete") ?" s-cmd="paypal_delete" s-post="#datasave" s-fields=''>@ButtonText(ButtonTypes.delete)</div>
+<div class="w3-row w3-padding w3-margin-top">
+    <div class="w3-button simplisity_click" s-cmd="paymentmethods_list" s-fields='{"systemkey":"rocketecommerce"}'>@ButtonIcon(ButtonTypes.back)</div>
+    <div class="w3-button w3-theme-action simplisity_click " s-cmd="paypal_save" s-fields='{"systemkey":"rocketecommerce"}' s-post="#datasave">@ButtonText(ButtonTypes.save)</div>
+    <div class="w3-button w3-red w3-right simplisity_confirmclick " s-confirm="@ResourceKey("DNNrocket.delete") ?" s-cmd="paypal_delete" s-fields='{"systemkey":"rocketecommerce"}' s-post="#datasave">@ButtonText(ButtonTypes.delete)</div>
 </div>
 
 <div id="datasave" class="w3-margin-top">
