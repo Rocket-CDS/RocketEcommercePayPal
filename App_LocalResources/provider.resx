@@ -161,7 +161,7 @@
   </data>
   <data name="paybuttonmsg.Text" xml:space="preserve">
     <value>&lt;b&gt;Pay Online - PayPal&lt;/b&gt;&lt;br/&gt;
-&lt;i&gt;Your order will be instantly accepted, prepared and sent when your payment has been made online. You will be redirected to a secure banking system for the payment.&lt;/i&gt;</value>
+&lt;i&gt;You will be redirected to a secure banking system for the payment.&lt;/i&gt;</value>
   </data>
   <data name="paybuttontext.Text" xml:space="preserve">
     <value>Button Text (html)</value>
