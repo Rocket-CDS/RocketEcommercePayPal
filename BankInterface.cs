@@ -4,19 +4,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using RocketEcommerce;
+using RocketEcommerceAPI;
 using DNNrocketAPI.Components;
-using RocketEcommerce.Interfaces;
-using RocketEcommerce.Components;
+using RocketEcommerceAPI.Interfaces;
+using RocketEcommerceAPI.Components;
 using System.Globalization;
 
-namespace RocketEcommerce.PayPal
+namespace RocketEcommerceAPI.PayPal
 {
     public class BankInterface : PaymentInterface
     {
         public override bool Active()
         {
-            var systemData = new SystemLimpet("rocketecommerce");
+            var systemData = new SystemLimpet("rocketecommerceapi");
             var rocketInterface = systemData.GetInterface("paypal");
             if (rocketInterface != null)
             {
@@ -28,7 +28,7 @@ namespace RocketEcommerce.PayPal
 
         public override string GetBankRemotePost(PaymentLimpet paymentData)
         {
-            var systemData = new SystemLimpet("rocketecommerce");
+            var systemData = new SystemLimpet("rocketecommerceapi");
             var rocketInterface = systemData.GetInterface(paymentData.PaymentProvider);
             if (rocketInterface != null)
             {
@@ -43,10 +43,10 @@ namespace RocketEcommerce.PayPal
 
                 rPost.Add("cmd", "_xclick");
                 rPost.Add("item_number", paymentData.PaymentId.ToString(""));
-                rPost.Add("return", rtnUrl + "&status=1&s=rocketecommerce&key=" + paymentData.PaymentGuid);
+                rPost.Add("return", rtnUrl + "&status=1&s=rocketecommerceapi&key=" + paymentData.PaymentGuid);
                 rPost.Add("currency_code", paypalData.CurrencyCode);
-                rPost.Add("cancel_return", rtnUrl + "&status=0&s=rocketecommerce&key=" + paymentData.PaymentGuid);
-                rPost.Add("notify_url", paypalData.NotifyUrl + "?cmd=remote_publicnotify&s=rocketecommerce&p=paypal&key=" + paymentData.PaymentKey);
+                rPost.Add("cancel_return", rtnUrl + "&status=0&s=rocketecommerceapi&key=" + paymentData.PaymentGuid);
+                rPost.Add("notify_url", paypalData.NotifyUrl + "?cmd=remote_publicnotify&s=rocketecommerceapi&p=paypal&key=" + paymentData.PaymentKey);
                 rPost.Add("custom", paypalData.PortalShop.CurrencyCultureCode);
                 rPost.Add("business", paypalData.PayPalId);
                 rPost.Add("item_name", paymentData.PaymentId.ToString(""));

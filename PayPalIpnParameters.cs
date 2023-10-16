@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace RocketEcommerce.PayPal
+namespace RocketEcommerceAPI.PayPal
 {
 
     public class PayPalIpnParameters

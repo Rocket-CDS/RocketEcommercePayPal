@@ -1,7 +1,7 @@
 ﻿<dotnetnuke type="Package" version="5.0">
 	<packages>
     
-		<package name="RocketEcommercePayPal" type="Library" version="1.0.5">
+		<package name="RocketEcommercePayPal" type="Library" version="1.1.0">
 			<friendlyName>RocketEcommercePayPal</friendlyName>
 			<description>RocketEcommercePayPal</description>
       <iconFile></iconFile>
@@ -50,7 +50,7 @@
 
         <component type="File">
           <files>
-			<basePath>DesktopModules\DNNrocketModules\RocketEcommerce\Plugins\RocketEcommercePayPal</basePath>
+			<basePath>DesktopModules\DNNrocketModules\RocketEcommerceAPI\Plugins\RocketEcommercePayPal</basePath>
 			<file>
               <name>paypal.rules</name>
               <sourceFileName>system.rules</sourceFileName>

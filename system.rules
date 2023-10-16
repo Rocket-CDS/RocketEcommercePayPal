@@ -1,5 +1,5 @@
   <genxml>
-    <systemkey>rocketecommerce</systemkey>
+    <systemkey>rocketecommerceapi</systemkey>
 
     <groupsdata list="true">
     </groupsdata>
@@ -12,7 +12,7 @@
       <genxml>
         <textbox>
           <interfacekey>paypal</interfacekey>
-          <namespaceclass>RocketEcommerce.PayPal.BankInterface</namespaceclass>
+          <namespaceclass>RocketEcommerceAPI.PayPal.BankInterface</namespaceclass>
           <assembly>RocketEcommercePayPal</assembly>
           <interfaceicon></interfaceicon>
           <defaultcommand>paypal_edit</defaultcommand>
@@ -45,7 +45,7 @@
       <genxml>
         <textbox>
           <interfacekey>paypal</interfacekey>
-          <namespaceclass>RocketEcommerce.PayPal.StartConnect</namespaceclass>
+          <namespaceclass>RocketEcommerceAPI.PayPal.StartConnect</namespaceclass>
           <assembly>RocketEcommercePayPal</assembly>
           <interfaceicon></interfaceicon>
           <defaultcommand>paypal_edit</defaultcommand>

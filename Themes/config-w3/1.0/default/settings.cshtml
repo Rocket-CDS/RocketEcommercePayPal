@@ -16,12 +16,12 @@
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketEcommerce/App_LocalResources/")
 @AddProcessData("resourcepath", "/DesktopModules/DNNrocketModules/RocketEcommercePayPal/App_LocalResources/")
 
-@RenderLanguageSelector("paypal_edit", "", "rocketecommerce", Model)
+@RenderLanguageSelector("paypal_edit", "", "rocketecommerceapi", Model)
 
 <div class="w3-row w3-padding w3-margin-top">
-    <div class="w3-button simplisity_click" s-cmd="paymentmethods_list" s-fields='{"systemkey":"rocketecommerce"}'>@ButtonIcon(ButtonTypes.back)</div>
-    <div class="w3-button w3-theme-action simplisity_click " s-cmd="paypal_save" s-fields='{"systemkey":"rocketecommerce"}' s-post="#datasave">@ButtonText(ButtonTypes.save)</div>
-    <div class="w3-button w3-red w3-right simplisity_confirmclick " s-confirm="@ResourceKey("DNNrocket.delete") ?" s-cmd="paypal_delete" s-fields='{"systemkey":"rocketecommerce"}' s-post="#datasave">@ButtonText(ButtonTypes.delete)</div>
+    <div class="w3-button simplisity_click" s-cmd="paymentmethods_list" s-fields='{"systemkey":"rocketecommerceapi"}'>@ButtonIcon(ButtonTypes.back)</div>
+    <div class="w3-button w3-theme-action simplisity_click " s-cmd="paypal_save" s-fields='{"systemkey":"rocketecommerceapi"}' s-post="#datasave">@ButtonText(ButtonTypes.save)</div>
+    <div class="w3-button w3-red w3-right simplisity_confirmclick " s-confirm="@ResourceKey("DNNrocket.delete") ?" s-cmd="paypal_delete" s-fields='{"systemkey":"rocketecommerceapi"}' s-post="#datasave">@ButtonText(ButtonTypes.delete)</div>
 </div>
 
 <div id="datasave" class="w3-margin-top">
@@ -30,7 +30,7 @@
         <label>Assembly</label>
         @TextBox(info, "genxml/textbox/assembly", "class='w3-input w3-border'  autocomplete='off' disabled ", "RocketEcommercePayPal")
         <label>Namespace + Class</label>
-        @TextBox(info, "genxml/textbox/namespaceclass", "class='w3-input w3-border'  autocomplete='off' disabled ", "RocketEcommerce.PayPal.BankInterface")
+        @TextBox(info, "genxml/textbox/namespaceclass", "class='w3-input w3-border'  autocomplete='off' disabled ", "RocketEcommerceAPI.PayPal.BankInterface")
     </div>
 
     <div class="w3-container">

@@ -1,19 +1,19 @@
 ﻿using DNNrocketAPI;
 using DNNrocketAPI.Components;
-using RocketEcommerce.Components;
+using RocketEcommerceAPI.Components;
 using Simplisity;
 using RocketPortal.Components;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace RocketEcommerce.PayPal
+namespace RocketEcommerceAPI.PayPal
 {
     public class PayPalData
     {
         private const string _entityTypeCode = "PAYPAL";
-        private const string _tableName = "RocketEcommerce";
-        private const string _systemKey = "rocketecommerce";
+        private const string _tableName = "RocketEcommerceAPI";
+        private const string _systemKey = "rocketecommerceapi";
         private string _guidKey;
         private DNNrocketController _objCtrl;
         public PayPalData(int portalid, string cultureCode)

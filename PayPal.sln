@@ -1,37 +1,61 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29920.165
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayPal", "PayPal.csproj", "{A374112E-DE43-4824-A39D-97EDE7518A9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DNNrocketAPI", "..\..\DNNrocket\API\DNNrocketAPI.csproj", "{2200F6C3-7D4B-4CDF-908F-DCA37ADFB121}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RocketEcommerce", "..\RocketEcommerce\RocketEcommerce.csproj", "{30CF889F-F346-4516-AE94-0B89EC357242}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplisity", "..\..\DNNrocket\Simplisity\Simplisity.csproj", "{FCFD36D2-FA73-4EFA-AE5A-2DB4A22763A8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RocketEcommerceAPI", "..\RocketEcommerceAPI\RocketEcommerceAPI.csproj", "{9F4AABB4-9AE0-4F71-872B-B1D6DDB19302}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F0082D0-639A-42AE-8E42-CABEEEF4E07A}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\dnnpack.config = ..\..\dnnpack.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Comp All|Any CPU = Comp All|Any CPU
+		CompAll|Any CPU = CompAll|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Razor|Any CPU = Razor|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A374112E-DE43-4824-A39D-97EDE7518A9D}.Comp All|Any CPU.ActiveCfg = Release|Any CPU
+		{A374112E-DE43-4824-A39D-97EDE7518A9D}.Comp All|Any CPU.Build.0 = Release|Any CPU
+		{A374112E-DE43-4824-A39D-97EDE7518A9D}.CompAll|Any CPU.ActiveCfg = Release|Any CPU
+		{A374112E-DE43-4824-A39D-97EDE7518A9D}.CompAll|Any CPU.Build.0 = Release|Any CPU
 		{A374112E-DE43-4824-A39D-97EDE7518A9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A374112E-DE43-4824-A39D-97EDE7518A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A374112E-DE43-4824-A39D-97EDE7518A9D}.Razor|Any CPU.ActiveCfg = Razor|Any CPU
 		{A374112E-DE43-4824-A39D-97EDE7518A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A374112E-DE43-4824-A39D-97EDE7518A9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2200F6C3-7D4B-4CDF-908F-DCA37ADFB121}.Comp All|Any CPU.ActiveCfg = Comp All|Any CPU
+		{2200F6C3-7D4B-4CDF-908F-DCA37ADFB121}.Comp All|Any CPU.Build.0 = Comp All|Any CPU
+		{2200F6C3-7D4B-4CDF-908F-DCA37ADFB121}.CompAll|Any CPU.ActiveCfg = CompAll|Any CPU
+		{2200F6C3-7D4B-4CDF-908F-DCA37ADFB121}.CompAll|Any CPU.Build.0 = CompAll|Any CPU
 		{2200F6C3-7D4B-4CDF-908F-DCA37ADFB121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2200F6C3-7D4B-4CDF-908F-DCA37ADFB121}.Razor|Any CPU.ActiveCfg = Razor|Any CPU
 		{2200F6C3-7D4B-4CDF-908F-DCA37ADFB121}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{30CF889F-F346-4516-AE94-0B89EC357242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{30CF889F-F346-4516-AE94-0B89EC357242}.Razor|Any CPU.ActiveCfg = Razor|Any CPU
-		{30CF889F-F346-4516-AE94-0B89EC357242}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCFD36D2-FA73-4EFA-AE5A-2DB4A22763A8}.Comp All|Any CPU.ActiveCfg = Comp All|Any CPU
+		{FCFD36D2-FA73-4EFA-AE5A-2DB4A22763A8}.Comp All|Any CPU.Build.0 = Comp All|Any CPU
+		{FCFD36D2-FA73-4EFA-AE5A-2DB4A22763A8}.CompAll|Any CPU.ActiveCfg = CompAll|Any CPU
+		{FCFD36D2-FA73-4EFA-AE5A-2DB4A22763A8}.CompAll|Any CPU.Build.0 = CompAll|Any CPU
 		{FCFD36D2-FA73-4EFA-AE5A-2DB4A22763A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FCFD36D2-FA73-4EFA-AE5A-2DB4A22763A8}.Razor|Any CPU.ActiveCfg = Razor|Any CPU
 		{FCFD36D2-FA73-4EFA-AE5A-2DB4A22763A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F4AABB4-9AE0-4F71-872B-B1D6DDB19302}.Comp All|Any CPU.ActiveCfg = Comp All|Any CPU
+		{9F4AABB4-9AE0-4F71-872B-B1D6DDB19302}.Comp All|Any CPU.Build.0 = Comp All|Any CPU
+		{9F4AABB4-9AE0-4F71-872B-B1D6DDB19302}.CompAll|Any CPU.ActiveCfg = CompAll|Any CPU
+		{9F4AABB4-9AE0-4F71-872B-B1D6DDB19302}.CompAll|Any CPU.Build.0 = CompAll|Any CPU
+		{9F4AABB4-9AE0-4F71-872B-B1D6DDB19302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F4AABB4-9AE0-4F71-872B-B1D6DDB19302}.Razor|Any CPU.ActiveCfg = Razor|Any CPU
+		{9F4AABB4-9AE0-4F71-872B-B1D6DDB19302}.Razor|Any CPU.Build.0 = Razor|Any CPU
+		{9F4AABB4-9AE0-4F71-872B-B1D6DDB19302}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

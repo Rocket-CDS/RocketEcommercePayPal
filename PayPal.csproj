@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>RocketEcommerce.PayPal</RootNamespace>
+    <RootNamespace>RocketEcommerceAPI.PayPal</RootNamespace>
     <AssemblyName>RocketEcommercePayPal</AssemblyName>
     <Configurations>Debug;Release;Razor</Configurations>
     <AssemblyVersion>1.0.5.0</AssemblyVersion>
@@ -13,7 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\DNNrocket\API\DNNrocketAPI.csproj" />
     <ProjectReference Include="..\..\DNNrocket\Simplisity\Simplisity.csproj" />
-    <ProjectReference Include="..\RocketEcommerce\RocketEcommerce.csproj" />
+    <ProjectReference Include="..\RocketEcommerceAPI\RocketEcommerceAPI.csproj" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

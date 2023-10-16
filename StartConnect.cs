@@ -1,13 +1,14 @@
 ﻿using DNNrocketAPI;
 using DNNrocketAPI.Components;
-using RocketEcommerce.Components;
+using DNNrocketAPI.Interfaces;
+using RocketEcommerceAPI.Components;
 using Simplisity;
 using System;
 using System.Collections.Generic;
 
-namespace RocketEcommerce.PayPal
+namespace RocketEcommerceAPI.PayPal
 {
-    public class StartConnect : DNNrocketAPI.APInterface
+    public class StartConnect : IProcessCommand
     {
         private SimplisityInfo _postInfo;
         private SimplisityInfo _paramInfo;
@@ -16,10 +17,10 @@ namespace RocketEcommerce.PayPal
         private string _currentLang;
         private Dictionary<string, string> _passSettings;
         private SystemLimpet _systemData;
-        private const string _systemkey = "rocketecommerce";
+        private const string _systemkey = "rocketecommerceapi";
         private SessionParams _sessionParams;
 
-        public override Dictionary<string, object> ProcessCommand(string paramCmd, SimplisityInfo systemInfo, SimplisityInfo interfaceInfo, SimplisityInfo postInfo, SimplisityInfo paramInfo, string langRequired = "")
+        public Dictionary<string, object> ProcessCommand(string paramCmd, SimplisityInfo systemInfo, SimplisityInfo interfaceInfo, SimplisityInfo postInfo, SimplisityInfo paramInfo, string langRequired = "")
         {
             var strOut = ""; // return ERROR if not matching commands.
             var rtnDic = new Dictionary<string, object>();

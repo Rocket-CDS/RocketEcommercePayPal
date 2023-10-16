@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Web;
 
-namespace RocketEcommerce.PayPal
+namespace RocketEcommerceAPI.PayPal
 {
     public class ProviderUtils
     {
