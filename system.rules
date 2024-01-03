@@ -1,6 +1,6 @@
   <genxml>
     <systemkey>rocketecommerceapi</systemkey>
-
+	  <plugin>true</plugin>
     <groupsdata list="true">
     </groupsdata>
 
