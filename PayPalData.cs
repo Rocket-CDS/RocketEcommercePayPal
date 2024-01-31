@@ -37,7 +37,7 @@ namespace RocketEcommerceAPI.PayPal
         {
             Info.XMLData = postInfo.XMLData;
             _objCtrl.SaveData(Info, _tableName);
-            LogUtils.LogTracking("Save - UserId: " + UserUtils.GetCurrentUserId() + " " + postInfo.XMLData,"PayPal");
+            LogUtils.LogSystem("PAYPAL Save - UserId: " + UserUtils.GetCurrentUserId() + " " + postInfo.XMLData);
         }
         public void Delete()
         {

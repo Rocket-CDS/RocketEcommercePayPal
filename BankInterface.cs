@@ -123,7 +123,7 @@ namespace RocketEcommerceAPI.PayPal
 
             var paymentKey = ProviderUtils.GetParam(paramInfo, "key");
             PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), paymentKey);
-            if (paymentData.Exists)
+            if (paymentData.Exists && paymentData.BankAction == PaymentAction.BankPost)
             {
                 var status = ProviderUtils.GetParam(paramInfo, "status");
                 if (status == "0")
