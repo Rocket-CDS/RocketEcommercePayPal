@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\dnnpack.config = ..\..\dnnpack.config
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RE_Etransactions", "..\RE_Etransactions\RE_Etransactions.csproj", "{F4C02E8F-1794-4421-B64D-A24599E98EFA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Comp All|Any CPU = Comp All|Any CPU
@@ -56,6 +58,16 @@ Global
 		{9F4AABB4-9AE0-4F71-872B-B1D6DDB19302}.Razor|Any CPU.ActiveCfg = Razor|Any CPU
 		{9F4AABB4-9AE0-4F71-872B-B1D6DDB19302}.Razor|Any CPU.Build.0 = Razor|Any CPU
 		{9F4AABB4-9AE0-4F71-872B-B1D6DDB19302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4C02E8F-1794-4421-B64D-A24599E98EFA}.Comp All|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4C02E8F-1794-4421-B64D-A24599E98EFA}.Comp All|Any CPU.Build.0 = Debug|Any CPU
+		{F4C02E8F-1794-4421-B64D-A24599E98EFA}.CompAll|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4C02E8F-1794-4421-B64D-A24599E98EFA}.CompAll|Any CPU.Build.0 = Debug|Any CPU
+		{F4C02E8F-1794-4421-B64D-A24599E98EFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4C02E8F-1794-4421-B64D-A24599E98EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4C02E8F-1794-4421-B64D-A24599E98EFA}.Razor|Any CPU.ActiveCfg = Razor|Any CPU
+		{F4C02E8F-1794-4421-B64D-A24599E98EFA}.Razor|Any CPU.Build.0 = Razor|Any CPU
+		{F4C02E8F-1794-4421-B64D-A24599E98EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4C02E8F-1794-4421-B64D-A24599E98EFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

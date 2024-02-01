@@ -87,7 +87,7 @@ namespace RocketEcommerceAPI.PayPal
 
             var paymentKey = ProviderUtils.GetParam(paramInfo, "key");
             PaymentLimpet paymentData = new PaymentLimpet(PortalUtils.GetPortalId(), paymentKey);
-            if (paymentData.Exists)
+            if (paymentData.Exists && paymentData.BankAction == PaymentAction.BankPost)
             {
                 // update bank action to IPN, so the return does not update the paymentData with a race condition
                 var ipn = new PayPalIpnParameters(paramInfo);
